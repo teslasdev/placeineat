@@ -20,7 +20,7 @@ const Home = ({ input, onInputChange }) => {
       setLoading(null)
       return;
     }
-    axios.post('https://placeineat-l2tf.vercel.app/',{
+    axios.post('https://placeineat.onrender.com',{
       prompt: search,
     })
     .then(function (response) {
