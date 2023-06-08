@@ -25,7 +25,7 @@ const Home = ({ input, onInputChange }) => {
     })
     .then(function (response) {
       setLoading(null)
-      localStorage.setItem('placestoeat', JSON.stringify(response.data.bot.trim()));
+      localStorage.setItem('placestoeat', response.data.bot.trim());
       navigate('/response')
     })
     .catch(function (error) {
