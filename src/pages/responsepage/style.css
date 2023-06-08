@@ -1,0 +1,401 @@
+.response-container {
+  background: #eaf6ef;
+  width: 100%;
+}
+.response-headline {
+  font-weight: 700;
+  font-size: 50px;
+  color: #1f394a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'IBM Plex Mono';
+}
+.based {
+  font-weight: 500;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  color: #1f394a;
+}
+.res-col-container {
+  margin-top: 100px;
+}
+.res-title {
+  font-weight: 700;
+  font-size: 30px;
+  background: #284c63;
+  height: 77px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+  align-items: center;
+  max-width: 40%;
+}
+.res-title a {
+  color: #fff;
+  text-decoration: none;
+}
+.res-address {
+  font-weight: 400;
+  font-size: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.add-left {
+  font-style: italic;
+}
+.add-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 400;
+}
+.loc-icon {
+  color: #32b768;
+}
+.dollar-phone-vegeterian {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+.res-dollars {
+  font-weight: 600;
+  font-size: 25px;
+  display: flex;
+}
+.res-dollars .diff {
+  color: #c0bbbb;
+}
+.phone-no {
+  font-weight: 300;
+  font-size: 20px;
+  color: #2e2c2c;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.pho-icon {
+  color: #4d0072;
+}
+.head-con {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px auto;
+  gap: 10px;
+}
+.three-btnd {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 15px;
+  flex-wrap: wrap;
+
+}
+.sec-btnd {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 15px;
+}
+.each-btn {
+  height: 30px;
+  background: #284c63;
+  border-radius: 65px;
+  font-weight: 300;
+  font-size: 10px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+.green-btn {
+  height: 25px;
+  background: #54b76a;
+  border-radius: 65px;
+  font-weight: 300;
+  font-size: 10px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.res-container-body {
+  padding: 40px 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.res-body-text {
+  font-weight: 300;
+  font-size: 20px;
+  text-align: justify;
+  line-height: 36px;
+}
+.res-body-text a {
+  text-decoration: none;
+  color: #1d089b;
+}
+.mid-dolls {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.phone-web {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.share-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 60px;
+  gap: 10px;
+  padding-bottom: 50px;
+  padding: 10px;
+}
+.share-text {
+  font-weight: 500;
+  font-size: 18px;
+}
+.three-text {
+  color: #284c63;
+  font-size: 16px;
+}
+.share-icons-container {
+  height: 43px;
+  background: #284c63;
+  border-radius: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+.socio-icon {
+  color: #fff;
+  font-size: 30px;
+}
+@media only screen and (max-width: 1000px) {
+  .res-address {
+    font-size: 25px;
+    margin: 30px 0;
+  }
+  .res-body-text {
+    font-weight: 300;
+    font-size: 25px;
+  }
+  .each-btn {
+    height: 35px;
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 856px) {
+  .response-headline {
+    font-size: 30px;
+  }
+  .res-address {
+    font-size: 20px;
+  }
+  .res-body-text {
+    font-size: 23px;
+  }
+  .each-btn {
+    height: 30px;
+    font-size: 11px;
+  }
+  .phone-web {
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+}
+@media only screen and (max-width: 780px) {
+  .three-btnd {
+    justify-content: center;
+  }
+  .res-address {
+    font-size: 18px;
+  }
+  .res-body-text {
+    font-size: 21px;
+  }
+
+  .each-btn {
+    height: 30px;
+    font-size: 11px;
+  }
+  .res-dollars {
+    font-size: 20px;
+  }
+  .phone-no {
+    font-size: 16px;
+  }
+  .response-headline {
+    font-size: 25px;
+  }
+  .add-right {
+    font-size:11px;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .response-headline {
+    font-size: 30px;
+  }
+  .res-container-body {
+    padding: 10px 10px;
+    gap: 10px;
+  }
+
+  .res-title {
+    height: 62px;
+  }
+  .res-address {
+    font-size: 14px;
+  }
+  .res-body-text {
+    font-size: 18px;
+  }
+
+  .each-btn {
+    font-size: 10px;
+  }
+  .res-dollars {
+    font-size: 14px;
+  }
+  .phone-no {
+    font-size: 14px;
+  }
+  
+}
+@media only screen and (max-width: 470px) {
+  .res-address {
+    font-size: 18px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .add-right {
+    font-size: 14px;
+  }
+  .dollar-phone-vegeterian {
+    flex-wrap: wrap;
+    font-size: 16px;
+  }
+  .res-col-container {
+    margin-top: 30px;
+  }
+  .phone-no {
+    font-size: 15px;
+  }
+  .res-body-text {
+    font-size: 16px;
+  }
+  .response-headline {
+    font-size: 20px;
+  }
+  .based {
+    font-size: 20px;
+  }
+  .res-title {
+    max-width: 80%;
+    font-size: 20px;
+  }
+  .each-btn {
+    font-size: 10px;
+  }
+  .res-dollars {
+    font-size: 11px;
+  }
+  .phone-no {
+    font-size: 15px;
+  }
+  
+  .share-list {
+    gap: 10px;
+  }
+  .share-text {
+    font-size: 16px;
+  }
+  .share-icons-container {
+    height: 35px;
+    padding: 10px;
+  }
+  .socio-icon {
+    font-size: 25px;
+  }
+  .head-con {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 390px) {
+  .response-headline {
+    font-size: 20px;
+  }
+  .based {
+    font-size: 17px;
+  }
+  .res-address {
+    font-size: 9px;
+  }
+  .res-title {
+    font-size: 20px;
+  }
+  .res-body-text {
+    font-size: 14px;
+  }
+
+  .each-btn {
+    font-size: 9px;
+    width: 80px;
+  }
+  .res-dollars {
+    font-size: 10px;
+  }
+  .phone-no {
+    font-size: 8px;
+    gap: 3px;
+  }
+ 
+}
+@media only screen and (max-width: 333px) {
+  .res-address {
+    font-size: 7px;
+  }
+  .res-body-text {
+    font-size: 14px;
+  }
+  .response-headline {
+    font-size: 20px;
+  }
+  .based {
+    font-size: 13px;
+  }
+  .each-btn {
+    font-size: 9px;
+    width: 80px;
+  }
+  .res-dollars {
+    font-size: 9px;
+  }
+  .phone-no {
+    font-size: 7px;
+  }
+
+}
