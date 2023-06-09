@@ -20,7 +20,7 @@ const Home = ({ input, onInputChange }) => {
       setLoading(null)
       return;
     }
-    axios.post('https://placeineat.onrender.com',{
+    axios.post('http://localhost:2000',{
       prompt: search,
     })
     .then(function (response) {
