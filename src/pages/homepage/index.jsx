@@ -6,7 +6,6 @@ import axios from 'axios'
 import { FallingLines } from "react-loader-spinner";
 const Home = ({ input, onInputChange }) => {
   const navigate = useNavigate();
-
   const [search, setSearch] = useState('')
   const [isLoading , setLoading] = useState(null)
   function gotoResponsePage() {

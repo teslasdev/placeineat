@@ -18,7 +18,6 @@ const ResponsePage = ({ input }) => {
       console.log(items)
     }
   }, [setItems]);
-  
   return (
     <div className="response-container">
       <Navbar className={"res-btn"} logo={"res-logo"} />
@@ -48,9 +47,9 @@ const ResponsePage = ({ input }) => {
       <div className="res-container-body">
         <div className="res-address">
           <div className="mid-dolls">
-            <div className="add-left">Middle Eastern</div>
+            <div className="add-left">{item.Region}</div>
             <div className="res-dollars">
-              <div className="dolls">${item.Price}</div>
+              <div className="dolls">{item.Price}</div>
             </div>
           </div>
           <div className="add-right">
@@ -76,7 +75,7 @@ const ResponsePage = ({ input }) => {
         <div className="res-body-content">
           <div className="res-body-text">
             {item.Description}
-            <b> ({item.Description.split(' ').length} words)</b>
+            {/* <b> ({item.Description.split(' ').length} words)</b> */}
             {/* <a href="www.none.com">Read more.</a> */}
           </div>
         </div>
