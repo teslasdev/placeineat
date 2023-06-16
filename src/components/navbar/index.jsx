@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 const Navbar = ({ className, logo }) => {
   const navigate = useNavigate();
   function gotoResponsePage() {
-    navigate("/response");
+    navigate("/blog");
   }
   function gotoHome() {
     navigate("/");
