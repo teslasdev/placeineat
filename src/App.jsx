@@ -2,6 +2,7 @@ import Home from "./pages/homepage";
 import { Routes, Route } from "react-router-dom";
 import ResponsePage from "./pages/responsepage";
 import { useState } from "react";
+import Blog from "./pages/Blog/Blog";
 
 function App() {
   const [input, setInput] = useState("");
@@ -21,6 +22,13 @@ function App() {
           path="/response"
           element={
             <ResponsePage input={input} onInputChange={handleInputChange} />
+          }
+        />
+        <Route
+          index
+          path="/blog"
+          element={
+            <Blog />
           }
         />
       </Routes>
