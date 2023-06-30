@@ -11,3 +11,14 @@
   /* overflow-y: hidden; */
   font-family: "IBM Plex Mono", sans-serif;
 }
+
+
+.overflow-scrolling-hidden::-webkit-scrollbar {
+  width: 0px;
+}
+
+p  {
+  line-height: 30px !important;
+  color: #434343;
+  @apply text-sm
+}
