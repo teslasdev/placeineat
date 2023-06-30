@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import {AiOutlineArrowRight ,AiOutlineArrowLeft} from 'react-icons/ai'
 import {RxCaretRight} from 'react-icons/rx'
 
+
 const Blog = () => {
    const images = [
       {
@@ -70,7 +71,7 @@ const Blog = () => {
                <AiOutlineArrowLeft size={20}/>
             </div>
 
-            <div className='md:w-[90%] w-full overflow-scroll'>
+            <div className='overflow-scrolling-hidden md:w-[90%] w-full overflow-x-scroll overflow-y-hidden'>
                <div className='flex md:gap-8 gap-4 md:min-w-[130%]'>
                   <div className='w-[268.5px] flex flex-col items-center justify-center gap-3'>
                      <div className='w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm'>
@@ -89,7 +90,7 @@ const Blog = () => {
                   </div>
                   <div className='w-[268.5px] flex flex-col items-center justify-center gap-3'>
                      <div className='w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm'>
-                        <img src="/public/images/restaurant1.jpg" className='w-full h-full rounded-md shadow-lg object-cover' alt="" srcset="" />
+                        <img src="/images/restaurant1.jpg" className='w-full h-full rounded-md shadow-lg object-cover' alt="" srcset="" />
                      </div>
                      <h4 className='text-sm md:text-[18px]'>Iceland</h4>
                      <Link className='text-[#8A53FF] text-xs md:text-[16px]'>Discover</Link>

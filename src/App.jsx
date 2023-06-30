@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import ResponsePage from "./pages/responsepage";
 import { useState } from "react";
 import Blog from "./pages/Blog/Blog";
+import Article from "./pages/Article/Article";
 
 function App() {
   const [input, setInput] = useState("");
@@ -31,6 +32,14 @@ function App() {
             <Blog />
           }
         />
+        <Route
+          index
+          path="/article"
+          element={
+            <Article />
+          }
+        />
+
       </Routes>
     </div>
   );
