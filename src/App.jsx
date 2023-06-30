@@ -25,21 +25,8 @@ function App() {
             <ResponsePage input={input} onInputChange={handleInputChange} />
           }
         />
-        <Route
-          index
-          path="/blog"
-          element={
-            <Blog />
-          }
-        />
-        <Route
-          index
-          path="/article"
-          element={
-            <Article />
-          }
-        />
-
+        <Route index path="/blog" element={<Blog />} />
+        <Route index path="/article" element={<Article />} />
       </Routes>
     </div>
   );
