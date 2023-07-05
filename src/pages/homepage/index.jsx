@@ -4,7 +4,7 @@ import "./style.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { FallingLines } from "react-loader-spinner";
-const Home = ({ input, onInputChange }) => {
+const Home = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [isLoading, setLoading] = useState(null);
@@ -18,20 +18,12 @@ const Home = ({ input, onInputChange }) => {
     setCheck(0)
     if(search === '') {
       setLoading(null)
-    setLoading(
-      <FallingLines
-        color="#ffffff"
-        width="50"
-        visible={true}
-        ariaLabel="falling-lines-loading"
-      />
-    );
+    }
     if (search === "") {
       setLoading(null);
       return;
     }
-    axios
-      .post("https://placeineat.onrender.com", {
+    axios.post("https://placeineat.onrender.com", {
         prompt: search,
       })
       .then(function (response) {
@@ -173,4 +165,4 @@ const Home = ({ input, onInputChange }) => {
   );
 };
 
-export default Home;
+export default Home

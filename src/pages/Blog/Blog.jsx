@@ -81,7 +81,7 @@ const Blog = () => {
             discover some hip, new restaurants in The Big Apple? Read this blog
             article and get ready to hear that belly grumble.{" "}
           </p>
-          <Link className="text-[#8A53FF] text-[16px] mt-6">Discover</Link>
+          <Link className="text-[#8A53FF] text-[16px] mt-6" to="/article">Discover</Link>
         </div>
       </div>
 
@@ -97,7 +97,7 @@ const Blog = () => {
             <AiOutlineArrowLeft size={20} />
           </div>
 
-          <div className="md:w-[90%] w-full overflow-scroll">
+          <div className="md:w-[90%] w-full overflow-scroll overflow-scrolling-hidden">
             <div className="flex md:gap-8 gap-4 md:min-w-[130%]">
               <div className="w-[268.5px] flex flex-col items-center justify-center gap-3">
                 <div className="w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm">
@@ -109,7 +109,7 @@ const Blog = () => {
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]">
+                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
                   Discover
                 </Link>
               </div>
@@ -124,7 +124,7 @@ const Blog = () => {
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]">
+                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
                   Discover
                 </Link>
               </div>
@@ -138,7 +138,7 @@ const Blog = () => {
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]">
+                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
                   Discover
                 </Link>
               </div>
@@ -152,7 +152,7 @@ const Blog = () => {
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]">
+                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
                   Discover
                 </Link>
               </div>
@@ -166,14 +166,14 @@ const Blog = () => {
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]">
+                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
                   Discover
                 </Link>
               </div>
             </div>
           </div>
 
-            <div className='md:w-[90%] w-full overflow-scroll'>
+            {/* <div className='md:w-[90%] w-full overflow-scroll'>
                <div className='flex md:gap-8 gap-4 md:min-w-[130%]'>
                   <div className='w-[268.5px] flex flex-col items-center justify-center gap-3'>
                      <div className='w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm'>
@@ -212,7 +212,7 @@ const Blog = () => {
                      <Link className='text-[#8A53FF] text-xs md:text-[16px]'>Discover</Link>
                   </div>
                </div>
-            </div>
+            </div> */}
 
           <div>
             <AiOutlineArrowRight size={20} />

@@ -3,6 +3,7 @@ import Logo from "../../assets/logoplacetoeat.png";
 import cam from "../../assets/cam.jpg";
 import BlogCol from "../../components/blogCol";
 import data from "../../utils/data.json";
+import { Link } from "react-router-dom";
 const CityPage = () => {
   return (
     <div className="bg-white">
@@ -31,7 +32,7 @@ const CityPage = () => {
             </div>
             <div className=" relative w-[180px] mt-[15px]">
               <button className="border rounded-full border-black w-[180px] text-[16px] font-medium h-[35px]">
-                READ MORE
+                <Link to="/article" className="w-full">READ MORE</Link>
               </button>
               <div className="bg-black text-white w-[35px] h-[35px] flex justify-center items-center text-[20px] rounded-full absolute top-0 right-[-10px]">
                 <AiOutlineRight />

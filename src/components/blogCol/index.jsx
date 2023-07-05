@@ -1,10 +1,10 @@
 import { AiOutlineRight } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const BlogCol = ({ content }) => {
   const navigate = useNavigate();
 
   function gotoBlogPage() {
-    navigate("/blog");
+    navigate("/article");
   }
   return (
     <div className="border-2 m-10 w-[500px] rounded shadow-[0_3px_10px_0px_rgba(0,0,0,0.2)]  mb:w-[430px] ms:w-[350px] tablet:w-[300px] palm:w-[80%] mobile:w-[90%]">

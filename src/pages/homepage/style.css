@@ -19,7 +19,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70%;
+  height: 100%;
   gap: 20px;
 }
 .headline-text {
@@ -96,6 +96,9 @@
   font-size: 18px;
   line-height: 28px;
   color: #284c63;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .recent {
   font-weight: 400;

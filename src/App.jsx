@@ -17,7 +17,7 @@ function App() {
         <Route
           index
           path="/"
-          element={<Home input={input} onInputChange={handleInputChange} />}
+          element={<Home />}
         />
         <Route
           index
@@ -26,9 +26,24 @@ function App() {
             <ResponsePage input={input} onInputChange={handleInputChange} />
           }
         />
-        <Route index path="/blog" element={<Blog />} />
-        <Route index path="/article" element={<Article />} />
-        <Route index path="/city" element={<CityPage />} />
+        <Route 
+          index 
+          path="/blog" 
+          element={<Blog />} 
+        />
+        
+        <Route 
+          index 
+          path="/article" 
+          element={<Article />} 
+        />
+
+        <Route 
+          index 
+          path="/city" 
+          element={<CityPage />} 
+        />
+        
       </Routes>
     </div>
   );
