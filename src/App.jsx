@@ -4,6 +4,7 @@ import ResponsePage from "./pages/responsepage";
 import { useState } from "react";
 import Blog from "./pages/Blog/Blog";
 import Article from "./pages/Article/Article";
+import CityPage from "./pages/citypage";
 
 function App() {
   const [input, setInput] = useState("");
@@ -27,6 +28,7 @@ function App() {
         />
         <Route index path="/blog" element={<Blog />} />
         <Route index path="/article" element={<Article />} />
+        <Route index path="/city" element={<CityPage />} />
       </Routes>
     </div>
   );

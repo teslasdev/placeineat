@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Top Places to Eat in London for Vegetarians",
+    "imageURL": "/images/restaurant.jpg",
+    "body": "Lorem ipsum dolor sit amet, con turadip iscingelit. In sed et donec purus viverra. Sitjusto velit, eu sed"
+  },
+  {
+    "id": 2,
+    "title": "Top Places to Eat in London for Families",
+    "imageURL": "/images/restaurant2.jpg",
+    "body": "Lorem ipsum dolor sit amet, con turadip iscingelit. In sed et donec purus viverra. Sitjusto velit, eu sed"
+  },
+  {
+    "id": 3,
+    "title": "Top Places to Eat in London for Kids",
+    "imageURL": "/images/restaurant1.jpg",
+    "body": "Lorem ipsum dolor sit amet, con turadip iscingelit. In sed et donec purus viverra. Sitjusto velit, eu sed"
+  },
+  {
+    "id": 4,
+    "title": "Top Places to Eat in London for Tourists",
+    "imageURL": "/images/restaurant1.jpg",
+    "body": "Lorem ipsum dolor sit amet, con turadip iscingelit. In sed et donec purus viverra. Sitjusto velit, eu sed"
+  }
+]
