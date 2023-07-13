@@ -1,25 +1,82 @@
 import express from 'express'
-import * as dotenv from 'dotenv'
+import dotenv from 'dotenv'
+import useragent from "express-useragent";
 import cors from 'cors'
 import { Configuration, OpenAIApi } from 'openai'
+import  fs from 'fs';
+import connectDB from "./config/db.js";
+import morgan from "morgan";
 
-dotenv.config()
+
+// Load environment variables via config.env if in development
+dotenv.config();
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+
 const openai = new OpenAIApi(configuration);
 
+const PORT = process.env.PORT || 2000;
+// Connect to database
+// connectDB();
 const app = express()
-app.use(cors())
-app.use(express.json())
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+app.use(express.json({ limit: "5mb" }));
+app.use(express.urlencoded({ extended: true, limit: "5mb" }));
+
+app.use(cors({ allowedHeaders: "*" }));
+app.options("*", cors());
+app.use(useragent.express());
 
 app.get('/', async (req, res) => {
   res.status(200).send({
     message: 'Hello from CodeX!'
   })
   console.log(process.env.OPENAI_API_KEY)
+})
+
+app.post('/upload-post' , async (req, res) => { 
+    try {
+      const { body } = req.body;
+      console.log(body)
+      fs.readFile('./content/post.json', function readFileCallback(err, data) {
+
+        if (err) {
+          console.log(err);
+        } else {
+            const obj = JSON.parse(data);
+            obj.table.push(body)
+
+            let json = JSON.stringify(obj);
+            fs.writeFile('./content/post.json', json, function(err) {
+              if (err) throw err;
+                console.log('complete');
+                res.status(200).send({
+                  bot: 'Success'
+                });
+              }
+            );
+        }
+    });
+    //   var obj = {
+    //     table: []
+    //   };
+    //  obj.table.push(body);
+    //  var json = JSON.stringify(obj);
+    //   fs.writeFile('./content/post.json', json , function(err) {
+    //     if (err) throw err;
+    //     console.log('complete');
+    //     }
+    //  );
+    } catch (error) {
+      console.error(error)
+      res.status(500).send(error || 'Something went wrong');
+    }
 })
 
 app.post('/', async (req, res) => {
@@ -48,4 +105,4 @@ app.post('/', async (req, res) => {
   }
 })
 
-app.listen(2000, () => console.log('AI server started on http://localhost:2000'))
+app.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
