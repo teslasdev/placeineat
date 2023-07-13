@@ -22,3 +22,7 @@ p  {
   color: #434343;
   @apply text-sm
 }
+
+li {
+  list-style: none;
+}

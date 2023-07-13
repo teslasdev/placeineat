@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import'./global.css';
 import { AiOutlineEye , AiFillDelete} from 'react-icons/ai'
 import { BsPencilFill } from 'react-icons/bs'
 import { useSelector , useDispatch } from 'react-redux';
