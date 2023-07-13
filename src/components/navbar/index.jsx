@@ -4,6 +4,10 @@ const Navbar = ({ className, logo }) => {
   function gotoResponsePage() {
     navigate("/blog");
   }
+
+  function gotoResponseDash() {
+    navigate("/dashboard");
+  }
   function gotoHome() {
     navigate("/");
   }
@@ -16,6 +20,10 @@ const Navbar = ({ className, logo }) => {
         <div className="nav">
           <button className={className} onClick={gotoResponsePage}>
             Blog
+          </button>
+
+          <button className={className} onClick={gotoResponseDash}>
+            Dashbaord
           </button>
         </div>
       </div>
