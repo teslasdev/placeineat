@@ -26,7 +26,7 @@ const Auth = () => {
             password : password
          }
 
-         axios.post("http://localhost:2000/auth", {
+         axios.post("https://placeineat.onrender.com/auth", {
          body: data,
          })
          .then(function (response) {
