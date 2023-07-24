@@ -6,13 +6,14 @@ import { FiLogOut } from 'react-icons/fi'
 import Logo from "../../assets/logoplacetoeat.png";
 import { toggleLogoutModal } from '../../react-redux/reducers/modal';
 import { useDispatch } from 'react-redux';
+import { IoClose } from 'react-icons/io5'
 
 
-const Sidebar = () => {
+const Sidebar = ({isOpen}) => {
    const dispatch = useDispatch();
    const location = useLocation();
   return (
-      <div className='relative hidden  w-[20%] p-4 md:flex flex-col  h-full rounded-md bg-white shadow-md'>
+      <div className='relative hidden w-[20%] p-4 md:flex flex-col  h-full rounded-md bg-white shadow-md' style={{ width : isOpen && '50%' , position : isOpen && "fixed" , display : isOpen && "flex"}}>
          <div className="w-[150px] md:w-[200px]">
             <img src={Logo} alt="Logo" />
          </div>

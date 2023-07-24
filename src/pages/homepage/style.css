@@ -39,7 +39,7 @@
 .filter-main {
   display: flex;
   margin-top: 10px;
-  gap: 30px;
+  gap: 50px;
   font-size: 15px;
   @apply w-full justify-center
 }

@@ -10,19 +10,13 @@ import Post from "./pages/Admin/Post";
 import { Action, EditPage, PageSetting } from "./pages/Admin/editor";
 import Blogs from "./pages/Admin/Blogs";
 import Auth from "./pages/Admin/Auth";
-import { getToken } from "./pages/helpers/components/Token";
+
 
 function App() {
-  const navigate = useNavigate()
   const [input, setInput] = useState("");
   const handleInputChange = (event) => {
     setInput(event.target.value);
   };
-  const token = getToken();
-  console.log(token);
-  if(!token) {
-    return <Auth />
-  }
   return (
     <div className="app">
       <Routes>
@@ -96,8 +90,6 @@ function App() {
           path="/login" 
           element={<Auth />} 
         />
-
-        
       </Routes>
     </div>
   );

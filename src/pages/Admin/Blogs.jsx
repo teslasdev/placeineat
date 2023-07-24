@@ -8,6 +8,8 @@ import DeleteModal from '../../general/Modal/DeleteModal'
 import Sidebar from './Sidebar';
 import { Link, useNavigate } from 'react-router-dom';
 import {useGetPost} from '../helpers/api-hooks/usePost';
+import { getToken } from '../helpers/components/Token';
+import Auth from './Auth';
 
 
 const Blogs = () => {
@@ -15,6 +17,10 @@ const Blogs = () => {
    const dispatch = useDispatch();
    const { logoutModalOpen, DeleteModalOpen } = useSelector(modalSelector);
    const {data} = useGetPost()
+   const token = getToken()
+   if(!token) {
+     return <Auth />
+   }
   return (
       <div className='bg-[#f3fff5] h-screen fixed w-full p-4'>
          <div className='flex h-full'>

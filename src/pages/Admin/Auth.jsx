@@ -26,14 +26,14 @@ const Auth = () => {
             password : password
          }
 
-         axios.post("https://placeineat.onrender.com/auth", {
+         axios.post("http://localhost:2000/auth", {
          body: data,
          })
          .then(function (response) {
             console.log(response)
             if(response.data.success) {
                setTimeout(() => {
-                  navigate('/dashbaord')
+                  navigate('/dashboard')
                }, 3000)
                setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJpZCI6IjYzNzdjNDY0OTRjYzg0MDAxZDE2M2Q2YiIsImlhdCI6MTY5MDIxMjEwNiwiZXhwIjoxNjkyODA0MTA2fQjYDIEOQl5ianW37ATc0lDdLt6OuGshLyFnxSbsNsGpc');
                toast.success("Logged In Successfully");
@@ -43,7 +43,7 @@ const Auth = () => {
          })
          .catch(function (error) {
             setIsLoading(false)
-            toast.error("Error Uploading , Try Again")
+            toast.error("Error, Try Again")
          });
       }
    }

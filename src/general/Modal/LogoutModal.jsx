@@ -1,6 +1,8 @@
+import { useLogout } from "../../pages/helpers/api-hooks/usePost";
 import { toggleLogoutModal } from "../../react-redux/reducers/modal";
 import { useDispatch } from "react-redux";
 const LogoutModal = () => {
+  const {logout} = useLogout();
   const dispatch = useDispatch();
   const dismiss = () => dispatch(toggleLogoutModal({ data: false }));
 
@@ -59,8 +61,8 @@ const LogoutModal = () => {
               className="flex sm:flex-col-reverse flex-row-reverse justify-around mt-10 
             sm:items-center cursor-pointer "
             >
-               <div className="flex w-[100px] justify-center items-center text-white bg-red-500 rounded-full p-2 hover:bg-[#8aff8a]">
-                  Delete
+               <div className="flex w-[100px] justify-center items-center text-white bg-red-500 rounded-full p-2 hover:bg-[#8aff8a]" onClick={logout}>
+                  Logout
                </div>
 
                <div className="flex w-[100px] justify-center items-center text-white bg-green-500 rounded-full p-2 hover:bg-[#8aff8a]" onClick={dismiss}>

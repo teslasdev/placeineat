@@ -71,44 +71,16 @@ const Home = () => {
             <div className="flex shadow-lg bg-[#D9D9D9] md:w-[15%] w-[40%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{visibility : checked === 1 ? "" : 'hidden'}}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
               <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
                 <div className="food-pref">Vegetarian</div>
               </div>
               <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
                 <div className="food-pref">Vegan</div>
               </div>
 
               <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Halal</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Halal</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Halal</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Halal</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Halal</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
                 <div className="food-pref">Halal</div>
               </div>
 
@@ -121,24 +93,84 @@ const Home = () => {
             <div className="flex shadow-lg bg-[#D9D9D9] md:w-[15%] w-[40%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{visibility : checked === 2 ? "" : 'hidden'}}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
               <div className="flex items-center gap-4 h-10">
-              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Vegetarian</div>
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Local</div>
               </div>
               <div className="flex items-center gap-4 h-10">
-              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Vegan</div>
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Italian</div>
               </div>
 
               <div className="flex items-center gap-4 h-10">
-              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Halal</div>
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Chinese</div>
+              </div>
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Mexican</div>
+              </div>
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Japanese</div>
               </div>
 
 
               <div className="flex items-center gap-4 h-10">
                 <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Kosher</div>
+                <div className="food-pref">Indian</div>
               </div>
+
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Thai</div>
+              </div>
+
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Mediterranean</div>
+              </div>
+
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Middle Eastern</div>
+              </div>
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">American</div>
+              </div>
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Korean</div>
+              </div>
+
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Vietnamese</div>
+              </div>
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Spanish</div>
+              </div>
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">Turkish</div>
+              </div>
+
+              <div className="flex items-center gap-4 h-10">
+                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                <div className="food-pref">French</div>
+              </div>
+
             </div>
           </div>
         </div>
