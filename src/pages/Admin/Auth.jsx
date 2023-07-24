@@ -33,7 +33,7 @@ const Auth = () => {
             console.log(response)
             if(response.data.success) {
                setTimeout(() => {
-                  navigate('/dashboard')
+                  window.location.reload();
                }, 3000)
                setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJpZCI6IjYzNzdjNDY0OTRjYzg0MDAxZDE2M2Q2YiIsImlhdCI6MTY5MDIxMjEwNiwiZXhwIjoxNjkyODA0MTA2fQjYDIEOQl5ianW37ATc0lDdLt6OuGshLyFnxSbsNsGpc');
                toast.success("Logged In Successfully");

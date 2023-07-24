@@ -15,7 +15,7 @@ const LogoutModal = () => {
       backdrop-blur-sm backdrop-brightness-50"
     >
       <div className="flex relative p-4 w-full justify-center pt-28 pb-72">
-        <div className="relative sm:w-full w-[30%] bg-white rounded-lg shadow">
+        <div className="relative sm:w-full md:w-[30%] w-full bg-white rounded-lg shadow">
           <button
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent 
