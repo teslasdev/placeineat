@@ -2,13 +2,14 @@ import { AiOutlineRight } from "react-icons/ai";
 import Logo from "../../assets/logoplacetoeat.png";
 import cam from "../../assets/cam.jpg";
 import BlogCol from "../../components/blogCol";
-import data from "../../utils/data.json";
 import { Link } from "react-router-dom";
+import { useGetPost } from "../helpers/api-hooks/usePost";
 const CityPage = () => {
+  const { data , isLoading} = useGetPost()
   return (
     <div className="bg-white">
       <div className="p-6 w-[200px] md:w-[300px]">
-        <img src={Logo} alt="" srcset="" />
+        <img src={Logo} alt=""  />
       </div>
       <div className=" p-16 pt-6 pb-0 palm:p-6 mobile:p-2">
         <div className="relative ">
@@ -56,8 +57,8 @@ const CityPage = () => {
         </div>
       </div>
       <div className="flex justify-around flex-wrap">
-        {data.map((card) => (
-          <BlogCol content={card} />
+        {data?.map((card) => (
+          <BlogCol isLoading={isLoading} content={card} />
         ))}
       </div>
     </div>

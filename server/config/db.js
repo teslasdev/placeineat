@@ -1,11 +1,20 @@
-import mongoose from "mongoose";
-
-const connectDB = async () => {
-  const conn = await mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+import mysql from 'mysql'
+const  connectDB = () => {
+  const conn = mysql.createConnection({
+    host: "1.2.3.4",
+    user: "uyhd9egyeqd2z",
+    password: "9(C22G#1g12]",
+    database : "dbn5fai2jcajgl"
   });
-  console.log(`MongoDB Connected: ${conn.connection.host}`);
-};
+  
+  conn.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
 
-export default connectDB;
+  return conn;
+}
+
+
+
+export default connectDB

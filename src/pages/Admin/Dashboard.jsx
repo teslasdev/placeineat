@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineEye , AiFillDelete} from 'react-icons/ai'
 import { BsPencilFill } from 'react-icons/bs'
 import { useSelector , useDispatch } from 'react-redux';
@@ -7,16 +7,11 @@ import LogoutModal from '../../general/Modal/LogoutModal';
 import DeleteModal from '../../general/Modal/DeleteModal'
 import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
-
+import {useGetPost} from '../helpers/api-hooks/usePost';
+import Loader from '../helpers/components/Loader';
 const Dashboard = () => {
-   const navigate = useNavigate()
-   const dispatch = useDispatch();
    const { logoutModalOpen, DeleteModalOpen } = useSelector(modalSelector);
-   const [tabs , setTabs] = useState(0)
-
-   const handlePreview = () => {
-      navigate('/post')
-   }
+   const { data ,isLoading } = useGetPost()
   return (
       <div className='bg-[#f3fff5] h-screen fixed w-full p-4'>
          <div className='flex h-full'>
@@ -25,171 +20,10 @@ const Dashboard = () => {
                <div className='text-md'>
                   <h3>Dashboard</h3>
 
-                  <div className='flex flex-wrap gap-6 justify-center'>
-                     <div className='flex py-10 gap-3'>
-                        <div className='bg-white shadow-md rounded-md w-[250px] h-[300px]'>
-                           <img
-                              src="/images/restaurant.jpg"
-                              className="w-full h-full rounded-md shadow-lg object-cover"
-                              alt=""
-                              srcset=""
-                           />
-                           <span className='bg-yellow-500 text-white px-3 rounded-full text-sm mt-4'>Draft</span>
-                        </div>
-                        <div className='flex gap-2 flex-col cursor-pointer'>
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white' onClick={handlePreview}>
-                              <AiOutlineEye size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <BsPencilFill size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'
-                              onClick={() => {
-                                 dispatch(
-                                    toggleDeleteModal({
-                                      data: {
-                                       modalState : true,
-                                       blogID : ""
-                                      }
-                                    })
-                                 )}
-                              }
-                           >
-                              <AiFillDelete size={20} />
-                           </div>
-                        </div>
-                     </div>
-
-                     <div className='flex py-10 gap-3'>
-                        <div className='bg-white shadow-md rounded-md w-[250px] h-[300px]'>
-                           <img
-                              src="/images/restaurant.jpg"
-                              className="w-full h-full rounded-md shadow-lg object-cover"
-                              alt=""
-                              srcset=""
-                           />
-                            <span className='bg-green-500 text-white px-3 rounded-full text-sm mt-4'>Published</span>
-                        </div>
-                        <div className='flex gap-2 flex-col cursor-pointer'>
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiOutlineEye size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <BsPencilFill size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiFillDelete size={20} />
-                           </div>
-                        </div>
-                     </div>
-
-
-                     <div className='flex py-10 gap-3'>
-                        <div className='bg-white shadow-md rounded-md w-[250px] h-[300px]'>
-                           <img
-                              src="/images/restaurant.jpg"
-                              className="w-full h-full rounded-md shadow-lg object-cover"
-                              alt=""
-                              srcset=""
-                           />
-                           <span className='bg-yellow-500 text-white px-3 rounded-full text-sm mt-4'>Draft</span>
-                        </div>
-                        <div className='flex gap-2 flex-col cursor-pointer'>
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiOutlineEye size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <BsPencilFill size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiFillDelete size={20} />
-                           </div>
-                        </div>
-                     </div>
-
-                     <div className='flex py-10 gap-3'>
-                        <div className='bg-white shadow-md rounded-md w-[250px] h-[300px]'>
-                           <img
-                              src="/images/restaurant.jpg"
-                              className="w-full h-full rounded-md shadow-lg object-cover"
-                              alt=""
-                              srcset=""
-                           />
-                           <span className='bg-yellow-500 text-white px-3 rounded-full text-sm mt-4'>Draft</span>
-                        </div>
-                        <div className='flex gap-2 flex-col cursor-pointer'>
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiOutlineEye size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <BsPencilFill size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiFillDelete size={20} />
-                           </div>
-                        </div>
-                     </div>
-
-
-
-                     <div className='flex py-10 gap-3'>
-                        <div className='bg-white shadow-md rounded-md w-[250px] h-[300px]'>
-                           <img
-                              src="/images/restaurant.jpg"
-                              className="w-full h-full rounded-md shadow-lg object-cover"
-                              alt=""
-                              srcset=""
-                           />
-                           <span className='bg-yellow-500 text-white px-3 rounded-full text-sm mt-4'>Draft</span>
-                        </div>
-                        <div className='flex gap-2 flex-col cursor-pointer'>
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiOutlineEye size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <BsPencilFill size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiFillDelete size={20} />
-                           </div>
-                        </div>
-                     </div>
-
-
-
-                     <div className='flex py-10 gap-3'>
-                        <div className='bg-white shadow-md rounded-md w-[250px] h-[300px]'>
-                           <img
-                              src="/images/restaurant.jpg"
-                              className="w-full h-full rounded-md shadow-lg object-cover"
-                              alt=""
-                              srcset=""
-                           />
-                           <span className='bg-yellow-500 text-white px-3 rounded-full text-sm mt-4'>Draft</span>
-                        </div>
-                        <div className='flex gap-2 flex-col cursor-pointer'>
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiOutlineEye size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <BsPencilFill size={20} />
-                           </div>
-
-                           <div className='w-[40px] h-[40px] bg-green-600 rounded-full flex justify-center items-center shadow-md text-white'>
-                              <AiFillDelete size={20} />
-                           </div>
-                        </div>
+                  <div className='flex flex-wrap gap-6 my-5'>
+                     <div className='w-[450px] h-[200px] p-6 rounded-lg bg-green-300'>
+                        <h3 className='text-white text-xl font-medium'>Posts</h3>
+                        <h1 className='text-5xl text-white mt-2 font-bold'>{isLoading ? <Loader/> : data.length}</h1>
                      </div>
                   </div>
                </div>
@@ -198,8 +32,6 @@ const Dashboard = () => {
 
          {logoutModalOpen && <LogoutModal />}
          {DeleteModalOpen && <DeleteModal />}
-
-         
       </div> 
   )
 }

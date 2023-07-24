@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../../assets/logoplacetoeat.png";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { RxCaretRight } from "react-icons/rx";
+import { useGetPost } from "../helpers/api-hooks/usePost";
+import Loader from "../helpers/components/Loader";
 
 
 const Blog = () => {
@@ -23,10 +25,13 @@ const Blog = () => {
       height: "290.7px",
     },
   ];
+
+  const { data , isLoading } = useGetPost();
+ 
   return (
     <div className="bg-white">
       <div className="p-6 w-[200px] md:w-[300px]">
-        <img src={Logo} alt="" srcset="" />
+        <img src={Logo} alt=""  />
       </div>
 
       <div className="md:h-[500px] h-[250px] md:p-24 p-6 flex flex-col-reverse md:flex-row items-center justify-between">
@@ -65,24 +70,25 @@ const Blog = () => {
             src="/images/restaurant.jpg"
             className="w-full h-full rounded-md shadow-lg object-cover"
             alt=""
-            srcset=""
+            
           />
         </div>
-
-        <div className="md:w-[503px] flex flex-col md:p-4 h-[338px]">
-          <h3 className="text-[#284C63] text-[18px]">
-            Featured FOOD DESTINATION
-          </h3>
-          <h1 className="md:text-[40px] text-[30px] font-bold text-[#434343]">
-            Best Places to Eat in NYC
-          </h1>
-          <p className="text-[#434343] text-sm md:text-md">
-            Visiting NYC or just feeling hungry for something new? Want to
-            discover some hip, new restaurants in The Big Apple? Read this blog
-            article and get ready to hear that belly grumble.{" "}
-          </p>
-          <Link className="text-[#8A53FF] text-[16px] mt-6" to="/article">Discover</Link>
-        </div>
+        {isLoading ? <Loader/> :
+          <div className="md:w-[503px] flex flex-col md:p-4 h-[338px]">
+            <h3 className="text-[#284C63] text-[18px]">
+              London is Cool
+            </h3>
+            <h1 className="md:text-[40px] text-[30px] font-bold text-[#434343]">
+              Best Places to Eat in NYC
+            </h1>
+            <p className="text-[#434343] text-sm md:text-md">
+              Visiting NYC or just feeling hungry for something new? Want to
+              discover some hip, new restaurants in The Big Apple? Read this blog
+              article and get ready to hear that belly grumble.{" "}
+            </p>
+            <Link className="text-[#8A53FF] text-[16px] mt-6" to="/article">Discover</Link>
+          </div>
+        }
       </div>
 
       <div className="md:h-[563px] bg-[#F5F5F5] flex flex-col justify-between md:p-12">
@@ -105,7 +111,7 @@ const Blog = () => {
                     src="/images/restaurant.jpg"
                     className="w-full h-full rounded-md shadow-lg object-cover"
                     alt=""
-                    srcset=""
+                   
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
@@ -120,7 +126,7 @@ const Blog = () => {
                     src="/images/restaurant2.jpg"
                     className="w-full h-full rounded-md shadow-lg object-cover"
                     alt=""
-                    srcset=""
+                  
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
@@ -134,7 +140,7 @@ const Blog = () => {
                     src="/public/images/restaurant1.jpg"
                     className="w-full h-full rounded-md shadow-lg object-cover"
                     alt=""
-                    srcset=""
+                    
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
@@ -148,7 +154,7 @@ const Blog = () => {
                     src="/images/restaurant2.jpg"
                     className="w-full h-full rounded-md shadow-lg object-cover"
                     alt=""
-                    srcset=""
+                   
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
@@ -162,7 +168,7 @@ const Blog = () => {
                     src="/images/restaurant2.jpg"
                     className="w-full h-full rounded-md shadow-lg object-cover"
                     alt=""
-                    srcset=""
+                    
                   />
                 </div>
                 <h4 className="text-sm md:text-[18px]">Iceland</h4>
@@ -234,7 +240,7 @@ const Blog = () => {
                 src="/images/restaurant.jpg"
                 className="w-full h-full rounded-t-md shadow-lg"
                 alt=""
-                srcset=""
+               
               />
             </div>
             <div className="p-4">
@@ -253,7 +259,7 @@ const Blog = () => {
                   src="/images/restaurant.jpg"
                   className="w-full h-full rounded-md shadow-lg object-cover"
                   alt=""
-                  srcset=""
+                 
                 />
               </div>
               <div>
@@ -271,7 +277,7 @@ const Blog = () => {
                   src="/images/restaurant.jpg"
                   className="w-full h-full rounded-md shadow-lg object-cover"
                   alt=""
-                  srcset=""
+                  
                 />
               </div>
               <div>
@@ -289,7 +295,7 @@ const Blog = () => {
                   src="/images/restaurant.jpg"
                   className="w-full h-full rounded-md shadow-lg object-cover"
                   alt=""
-                  srcset=""
+                 
                 />
               </div>
               <div>

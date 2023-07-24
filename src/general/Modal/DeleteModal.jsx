@@ -1,13 +1,12 @@
+import { useState } from "react";
+import { useDelete } from "../../pages/helpers/api-hooks/usePost";
+import Loader from "../../pages/helpers/components/Loader";
 import { toggleDeleteModal } from "../../react-redux/reducers/modal";
-import { useDispatch } from "react-redux";
+import {useDispatch } from "react-redux";
 const LogoutModal = () => {
   const dispatch = useDispatch();
-  const dismiss = () => dispatch(toggleDeleteModal({
-   data: {
-     modalState : false,
-     blogID : ""
-   }
- }));
+  const {del , isLoading} = useDelete()
+  const dismiss = () => dispatch(toggleDeleteModal({data: {modalState : false,blogID : ""}}));
   return (
     <div
       id="popup-modal"
@@ -63,15 +62,13 @@ const LogoutModal = () => {
               className="flex sm:flex-col-reverse flex-row-reverse justify-around mt-10 
             sm:items-center cursor-pointer "
             >
-               <div className="flex w-[100px] justify-center items-center text-white bg-red-500 rounded-full p-2 hover:bg-[#ff8a8a]">
-                  Delete
+               <div className="flex w-[100px] justify-center items-center text-white bg-red-500 rounded-full p-2 hover:bg-[#ff8a8a]" onClick={del}>
+                  {isLoading ? <Loader /> : 'Delete'}
                </div>
 
                <div className="flex w-[100px] justify-center items-center text-white bg-green-500 rounded-full p-2 hover:bg-[#8aff8a]" onClick={dismiss}>
                   Cancel
                </div>
-
-               
             </div>
           </div>
         </div>

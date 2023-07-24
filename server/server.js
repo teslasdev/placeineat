@@ -6,6 +6,8 @@ import { Configuration, OpenAIApi } from 'openai'
 import  fs from 'fs';
 import connectDB from "./config/db.js";
 import morgan from "morgan";
+import multer from 'multer'
+
 
 
 // Load environment variables via config.env if in development
@@ -18,9 +20,10 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+
 const PORT = process.env.PORT || 2000;
 // Connect to database
-// connectDB();
+const  conn   = connectDB();
 const app = express()
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -40,43 +43,179 @@ app.get('/', async (req, res) => {
   console.log(process.env.OPENAI_API_KEY)
 })
 
+
 app.post('/upload-post' , async (req, res) => { 
-    try {
-      const { body } = req.body;
-      console.log(body)
-      fs.readFile('./content/post.json', function readFileCallback(err, data) {
+  try {
+    const { body } = req.body;
+    var sql = `INSERT INTO post (post_id ,title,content,slug,featured_img,status) VALUES (?)`;
+    const data = [body.postId , body.title ,body.content,'' ,0,2];
+    conn.query(sql ,[data], (err, result) => {
+      if (err) throw err;
+      console.log('complete');
+      res.status(200).send({
+        bot: 'Success',
+        id : body.postId
+      });
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error || 'Something went wrong');
+  }
+})
+var storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+      callback(null, '../public/uploads');
+  },
+  filename: function (req, file, callback) {
+      callback(null, file.originalname);
+  }
+});
+app.post("/upload_files", multer({ storage: storage }).single('files'), uploadFiles);
+function uploadFiles(req, res) {
+    console.log(req.body);
+    console.log(req.files);
+    res.json({ message: "Successfully uploaded files" });
+}
+app.post('/upload-details' , async (req, res) => { 
+  try {
+    const { body } = req.body;
+    var sql = `UPDATE post SET slug = '${body.slug}', featured_img = '${body.files}',images = '${body.files}',status = 1 WHERE post_id = "${body.postId}"
+    `;
+    conn.query(sql , (err, result) => {
+      if (err) throw err;
+      console.log('complete');
+      res.status(200).send({
+        bot: 'Success',
+        id : body.postId
+      });
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error || 'Something went wrong');
+  }
+})
 
-        if (err) {
-          console.log(err);
-        } else {
-            const obj = JSON.parse(data);
-            obj.table.push(body)
 
-            let json = JSON.stringify(obj);
-            fs.writeFile('./content/post.json', json, function(err) {
-              if (err) throw err;
-                console.log('complete');
-                res.status(200).send({
-                  bot: 'Success'
-                });
-              }
-            );
-        }
-    });
-    //   var obj = {
-    //     table: []
-    //   };
-    //  obj.table.push(body);
-    //  var json = JSON.stringify(obj);
-    //   fs.writeFile('./content/post.json', json , function(err) {
-    //     if (err) throw err;
-    //     console.log('complete');
-    //     }
-    //  );
-    } catch (error) {
-      console.error(error)
-      res.status(500).send(error || 'Something went wrong');
+app.post('/edit-post' , async (req, res) => { 
+  try {
+    const { body } = req.body;
+    var sql = `UPDATE post SET title = '${body.title}', content = '${body.content}',status = 1 WHERE post_id = '${body.postId}'
+    `;
+    conn.query(sql , (err, result) => {
+      if (err) throw err;
+      console.log('complete');
+      res.status(200).send({
+        bot: 'Success',
+        id : body.postId
+      });
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error || 'Something went wrong');
+  }
+})
+
+app.post('/update-post' , async (req, res) => { 
+  try {
+    const { body } = req.body;
+    var sql = `UPDATE post SET status = 2 WHERE post_id = "${body}"
+    `;
+    conn.query(sql , (err, result) => {
+      if (err) throw err;
+      res.status(200).send({
+        bot: 'Success',
+        id : body.postId
+      });
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error || 'Something went wrong');
+  }
+})
+
+app.get('/get-post' , async (req, res) => { 
+  const {id,slug} = req.query
+  try {
+    var sql = `SELECT * FROM post`;
+    if(id !== undefined) {
+      var sql = `SELECT * FROM post WHERE post_id = "${id}" OR slug = "${slug}"`;
     }
+    conn.query(sql , (err, result) => {
+      if (err) throw err;
+      console.log('complete');
+      return res.status(200).json({
+        success : true,
+        data : result
+      }
+      )
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error || 'Something went wrong');
+  }
+})
+
+
+
+app.get('/get-post-by-slug' , async (req, res) => { 
+  const {id,slug} = req.query
+  console.log(slug);
+  try {
+    var sql = `SELECT * FROM post WHERE slug = "${slug}"`;
+    conn.query(sql , (err, result) => {
+      if (err) throw err;
+      console.log('complete');
+      return res.status(200).json({
+        success : true,
+        data : result
+      })
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error || 'Something went wrong');
+  }
+})
+
+app.get('/delete' , async (req, res) => { 
+  const {id} = req.query
+  try {
+    var sql = `DELETE FROM post WHERE post_id = "${id}"`;
+    conn.query(sql , (err, result) => {
+      if (err) throw err;
+      return res.status(200).json({
+        success : true,
+      })
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error || 'Something went wrong');
+  }
+})
+
+
+
+app.post('/auth' , async (req, res) => { 
+  const { body } = req.body
+  console.log(body)
+  try {
+    var sql = `SELECT * FROM users WHERE email = "${body.address}" AND password = "${body.password}"`;
+    // const data = [body.title , body.content ,'', '', 0];
+    conn.query(sql , (err, result) => {
+      if(result.length >= 1) {
+        return res.status(200).json({
+          success : true,
+          data : result.token
+        })
+      }
+      return res.status(400).json({
+        success : false,
+      })
+      // console.log(result.length);
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error || 'Something went wrong');
+  }
 })
 
 app.post('/', async (req, res) => {
