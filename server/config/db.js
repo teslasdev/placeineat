@@ -3,7 +3,7 @@ const  connectDB = () => {
   const conn = mysql.createConnection({
     host: "placestoeat.io",
     user: "upeemoudzghcs",
-    password: "@4&+3*b&A%1d",
+    password: "112x1&@D1~@2",
     database : "dbn5fai2jcajgl"
   });
   
