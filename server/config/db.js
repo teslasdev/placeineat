@@ -14,7 +14,4 @@ const  connectDB = () => {
 
   return conn;
 }
-
-
-
 export default connectDB
