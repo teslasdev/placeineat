@@ -2,8 +2,8 @@ import mysql from 'mysql'
 const  connectDB = () => {
   const conn = mysql.createConnection({
     host: "https://placestoeat.io",
-    user: "urrcmkgzg6eb1",
-    password: "d$(4&boh^kc3",
+    user: "ubx77f2cuzrf0",
+    password: "placetoeat003",
     database : "dbrt6rmir6tnly"
   });
   
