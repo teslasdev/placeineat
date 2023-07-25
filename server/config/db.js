@@ -3,7 +3,7 @@ const  connectDB = () => {
   const conn = mysql.createConnection({
     host: "52.41.36.82",
     user: "uyhd9egyeqd2z",
-    password: "aD@vin33",
+    password: "`|y1^3m1hb8n",
     database : "dbn5fai2jcajgl"
   });
   
