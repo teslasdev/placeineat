@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AiOutlineEye , AiFillDelete} from 'react-icons/ai'
 import { BsPencilFill } from 'react-icons/bs'
 import { useSelector , useDispatch } from 'react-redux';
@@ -9,7 +9,10 @@ import Sidebar from './Sidebar';
 import { Link, useNavigate } from 'react-router-dom';
 import {useGetPost} from '../helpers/api-hooks/usePost';
 import { getToken } from '../helpers/components/Token';
+
 import Auth from './Auth';
+import { IoClose } from 'react-icons/io5';
+import { FaBars } from 'react-icons/fa';
 
 
 const Blogs = () => {
@@ -18,22 +21,29 @@ const Blogs = () => {
    const { logoutModalOpen, DeleteModalOpen } = useSelector(modalSelector);
    const {data} = useGetPost()
    const token = getToken()
+   const [isOpen , setisOpen] = useState(false)
    if(!token) {
      return <Auth />
    }
   return (
       <div className='bg-[#f3fff5] h-screen fixed w-full p-4'>
          <div className='flex h-full'>
-            <Sidebar />
-            <div className='w-full md:w-[75%] px-4 md:px-12 p-2 overflow-scroll'>
-               <div className='text-md'>
-                  <div className='flex justify-between mb-12 mt-4'>
-                     <h3 className='text-md'>Dashbaord</h3>
+            <Sidebar isOpen={isOpen} />
+               <div className='flex fixed top-1 text-green-500 left-1 bg-gray-200 rounded-full border-none opacity-1 z-10' style={{ display : !isOpen && 'none'}} onClick={() => setisOpen(false)}>
+                  <IoClose size={30} />
+               </div>
+               <div className='md:w-[75%] w-full md:px-12 p-4 overflow-scroll'>
+                  <div className='flex items-center justify-between'>
+                     <div className='text-md'>
+                        <div className='flex items-center gap-2'>
+                           <div className='md:hidden block' onClick={() => setisOpen(!isOpen)}><FaBars /></div>
+                           <h3>Dashboard</h3>
+                        </div>
+                     </div>
                      <div>
                         <Link to='/post' className='rounded-full bg-green-500 px-4 py-2 text-white'>Add New</Link>
                      </div>
                   </div>
-
                   <div className='flex flex-wrap gap-6 justify-center'>
                      {data?.map((item, index) => {
                         return (
@@ -80,7 +90,7 @@ const Blogs = () => {
                      })}
                
                   </div>
-               </div>
+              
             </div>
          </div>
 
