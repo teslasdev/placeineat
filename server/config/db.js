@@ -1,7 +1,7 @@
 import mysql from 'mysql'
 const  connectDB = () => {
   const conn = mysql.createConnection({
-    host: "https://placestoeat.io",
+    host: "placestoeat.io",
     user: "ubx77f2cuzrf0",
     password: "placetoeat003",
     database : "dbrt6rmir6tnly"
