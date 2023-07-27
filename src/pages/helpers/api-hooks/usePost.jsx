@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 // Get all Courses
 export const useGetPost = () => {
-  const url = "process.env.BACKEND_URL/get-post"
+  const url = process.env.BACKEND_URL + "/get-post"
   const { data , isLoading } = useQuery(["post"], ({ signal }) =>
     axios.get(url, { signal }).then((res) => res.data.data)
   );
