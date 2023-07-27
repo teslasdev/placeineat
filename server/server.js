@@ -23,7 +23,7 @@ const openai = new OpenAIApi(configuration);
 
 const PORT = process.env.PORT || 2000;
 // Connect to database
-const  conn   = connectDB();
+// const  conn   = connectDB();
 const app = express()
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
