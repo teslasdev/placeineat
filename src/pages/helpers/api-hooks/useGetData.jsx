@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 // Get all Courses
 export const useGetPreferences = () => {
-  const url = process.env.BACKEND_URL + "/get-preferences"
+  const url = process.env.BACKEND_URL + "get-preferences"
   const { data , isLoading } = useQuery(["post"], ({ signal }) =>
     axios.get(url, { signal }).then((res) => res.data.data)
   );
@@ -18,7 +18,7 @@ export const useGetPreferences = () => {
 
 // Get all Courses
 export const useGetCuisines = () => {
-  const url = process.env.BACKEND_URL + "/get-cuisines"
+  const url = process.env.BACKEND_URL + "get-cuisines"
   const { result , isLoadingUp } = useQuery(["post"], ({ signal }) =>
     axios.get(url, { signal }).then((res) => res.data.data)
   );
