@@ -25,7 +25,7 @@ const Home = () => {
       setLoading(null);
       return;
     }
-    axios.post("https://placeineat.onrender.com/", {
+    axios.post(import.meta.env.VITE_APP_BACKEND_URL, {
         prompt: search,
       })
       .then(function (response) {
