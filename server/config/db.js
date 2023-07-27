@@ -1,10 +1,10 @@
 import mysql from 'mysql'
 const  connectDB = () => {
   const conn = mysql.createConnection({
-    host: "35.212.115.77",
-    user: "u4jb3rtivjxjg",
-    password: "#$hc@6115@p]",
-    database : "dbrt6rmir6tnly"
+    host: "localhost",
+    user: "root",
+    password: "",
+    database : "placetoeat"
   });
   
   conn.connect(function(err) {
@@ -14,4 +14,7 @@ const  connectDB = () => {
 
   return conn;
 }
+
+
+
 export default connectDB
