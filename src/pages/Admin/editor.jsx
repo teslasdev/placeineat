@@ -85,7 +85,7 @@ export const Editor = () => {
          toast.error('Blog Title Can not be Black')
          setIsLoading(false)
       }
-      axios.post("http://localhost:2000/upload-post", {
+      axios.post("process.env.BACKEND_URL/upload-post", {
         body: data,
       })
       .then(function (response) {
@@ -243,7 +243,7 @@ export const EditPage = () => {
          toast.error('Blog Title Can not be Black')
          setIsLoading(false)
       } else {
-         axios.post("http://localhost:2000/edit-post", {
+         axios.post("process.env.BACKEND_URL/edit-post", {
            body: dataForm,
          })
          .then(function (response) {
@@ -352,7 +352,7 @@ export const PageSetting = () => {
       setFilesPath(prevFile => [...prevFile,filePath.name]);
       const formData = new FormData()
       formData.append("files", filePath);
-      fetch("http://localhost:2000/upload_files", {
+      fetch("process.env.BACKEND_URL/upload_files", {
           method: 'POST',
           body: formData,
       })
@@ -407,7 +407,7 @@ export const PageSetting = () => {
          toast.error("Add Featured Image")
          setIsLoading(false)
       } else {
-         axios.post("http://localhost:2000/upload-details", {
+         axios.post("process.env.BACKEND_URL/upload-details", {
            body: data,
          })
          .then(function (response) {
@@ -535,7 +535,7 @@ export const Action = () => {
    const postId = searchParams.get('id'); // 'name'
    const { data } = useGetPostById(postId) 
    const handleSubmit = () => {
-      axios.post("http://localhost:2000/update-post", {
+      axios.post("process.env.BACKEND_URL/update-post", {
          body: postId,
        })
        .then(function (response) {

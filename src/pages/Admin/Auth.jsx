@@ -26,7 +26,7 @@ const Auth = () => {
             password : password
          }
 
-         axios.post("http://localhost:2000/auth", {
+         axios.post("process.env.BACKEND_URL/auth", {
          body: data,
          })
          .then(function (response) {

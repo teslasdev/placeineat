@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 // Get all Courses
 export const useGetPost = () => {
-  const url = "http://localhost:2000/get-post"
+  const url = "process.env.BACKEND_URL/get-post"
   const { data , isLoading } = useQuery(["post"], ({ signal }) =>
     axios.get(url, { signal }).then((res) => res.data.data)
   );
@@ -16,7 +16,7 @@ export const useGetPost = () => {
 };
 // Get all Courses
 export const useGetPostById = (value) => {
-  const url = "http://localhost:2000/get-post/?id="+ value;
+  const url = "process.env.BACKEND_URL/get-post/?id="+ value;
   const { data , isLoading } = useQuery(["post"], ({ signal }) =>
      axios.get(url, { signal }).then((res) => res.data.data)
   );
@@ -25,7 +25,7 @@ export const useGetPostById = (value) => {
 
 // / Get all Courses
 export const useGetPostByslug = (value) => {
-  const url = "http://localhost:2000/get-post-by-slug/?slug="+ value;
+  const url = "process.env.BACKEND_URL/get-post-by-slug/?slug="+ value;
   const { data , isLoading } = useQuery(["post"], ({ signal }) =>
      axios.get(url, { signal }).then((res) => res.data.data)
   );
@@ -35,7 +35,7 @@ export const useGetPostByslug = (value) => {
 export const useDelete = () => {
   const dispatch = useDispatch()
   const location = useLocation()
-  const url = "http://localhost:2000/delete/?id=";
+  const url = "process.env.BACKEND_URL/delete/?id=";
   const { selectedToDelete } = useSelector(modalSelector)
   const { mutate, isLoading } = useMutation((type) => {
     axios.get(url+type , {
