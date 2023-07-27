@@ -4,10 +4,12 @@ import "./style.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { FallingLines } from "react-loader-spinner";
+import { useGetCuisines, useGetPreferences } from "../helpers/api-hooks/useGetData";
 const Home = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [isLoading, setLoading] = useState(null);
+  const [isLoadings, setLoading] = useState(null);
+  const [preferences , setPreferences] = useState([])
   function gotoResponsePage() {
     setLoading(<FallingLines
       color="#ffffff"
@@ -35,7 +37,8 @@ const Home = () => {
         console.log(error);
       });
   }
-
+  const {data , isLoading} = useGetPreferences()
+  const  {result , isLoadingUp} = useGetCuisines()
   const [checked,setCheck] = useState(0)
   return (
     <div className="home-body-container">
@@ -53,7 +56,7 @@ const Home = () => {
                 placeholder="Where to?"
               />
               <button className="let-eat" onClick={gotoResponsePage}>
-                {isLoading || "Let`s Eat"}
+                {isLoadings || "Let`s Eat"}
               </button>
             </div>
           </div>
@@ -70,107 +73,28 @@ const Home = () => {
           <div className="filter-main mb-0 md:mb-5">
             <div className="flex shadow-lg bg-[#D9D9D9] md:w-[15%] w-[40%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{visibility : checked === 1 ? "" : 'hidden'}}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
-              <div className="flex items-center gap-4 h-10">
-              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Vegetarian</div>
-              </div>
-              <div className="flex items-center gap-4 h-10">
-              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Vegan</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Halal</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Kosher</div>
-              </div>
+            
+             {data?.map((item , index) => {
+              return (
+                <div className="flex items-center gap-4 h-10" key={index} >
+                  <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                  <div className="food-pref">{item.name}</div>
+                </div>
+              )
+             })}
+              
             </div>
             <div className="flex shadow-lg bg-[#D9D9D9] md:w-[15%] w-[40%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{visibility : checked === 2 ? "" : 'hidden'}}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Local</div>
-              </div>
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Italian</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Chinese</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Mexican</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Japanese</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Indian</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Thai</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Mediterranean</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Middle Eastern</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">American</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Korean</div>
-              </div>
-
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Vietnamese</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Spanish</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">Turkish</div>
-              </div>
-
-              <div className="flex items-center gap-4 h-10">
-                <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                <div className="food-pref">French</div>
-              </div>
-
+             
+              {result?.map((item , index) => {
+                return (
+                  <div className="flex items-center gap-4 h-10"  key={index}>
+                    <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
+                    <div className="food-pref">{item.name}</div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>
