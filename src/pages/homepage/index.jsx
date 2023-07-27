@@ -23,7 +23,7 @@ const Home = () => {
       setLoading(null);
       return;
     }
-    axios.post("https://placeineat.onrender.com", {
+    axios.post("https://placeineat.onrender.com/", {
         prompt: search,
       })
       .then(function (response) {

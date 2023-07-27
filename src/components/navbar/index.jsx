@@ -22,9 +22,9 @@ const Navbar = ({ className, logo }) => {
             Blog
           </button>
 
-          <button className={className} onClick={gotoResponseDash}>
+          {/* <button className={className} onClick={gotoResponseDash}>
             Dashbaord
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
