@@ -34,3 +34,9 @@ p  {
 li {
   list-style: none;
 }
+
+td {
+  display: flex;
+  width: 120px;
+  @apply items-center justify-center
+}

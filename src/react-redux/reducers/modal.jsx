@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
    logoutModalOpen: false,
    DeleteModalOpen : false,
-   selectedToDelete : ""
+   selectedToDelete : "",
+   selectedValue : "",
+   OpenModal : false
    
 }; 
 
@@ -17,10 +19,14 @@ export const modalSlice = createSlice({
       toggleDeleteModal: (state, { payload }) => {
          state.DeleteModalOpen = payload.data.modalState;
          state.selectedToDelete = payload.data.blogID
+      },
+      toggleOpenModal: (state, { payload }) => {
+         state.OpenModal = payload.data.modalState;
+         state.selectedValue = payload.data.id
       }
    },
  });
  
- export const { toggleLogoutModal , toggleDeleteModal } = modalSlice.actions;
+ export const { toggleLogoutModal , toggleDeleteModal , toggleOpenModal } = modalSlice.actions;
 export const modalSelector = (state) => state.modal;
 export default modalSlice.reducer

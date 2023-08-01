@@ -22,23 +22,30 @@ const Auth = () => {
 
       else {
          const data = {
-            address : email,
+            email : email,
             password : password
          }
 
-         axios.post(import.meta.env.VITE_APP_BACKEND_URL+"auth", {
-         body: data,
-         })
+         axios.post(import.meta.env.VITE_APP_BACKEND_URL+"auth/signin", 
+            {
+               data
+            }, 
+            {
+               headers:  { 
+                  "content-type": "application/json" 
+               }
+            }
+         )
          .then(function (response) {
             console.log(response)
             if(response.data.success) {
+               setToken(response.data.accessToken)
+               toast.success("Logged In Successfully");
                setTimeout(() => {
                   window.location.reload();
-               }, 3000)
-               setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJpZCI6IjYzNzdjNDY0OTRjYzg0MDAxZDE2M2Q2YiIsImlhdCI6MTY5MDIxMjEwNiwiZXhwIjoxNjkyODA0MTA2fQjYDIEOQl5ianW37ATc0lDdLt6OuGshLyFnxSbsNsGpc');
-               toast.success("Logged In Successfully");
+               }, 3000);
             } else {
-               toast.error("Invalid Details, Try again");
+               toast.error(response.data.message);
             }
          })
          .catch(function (error) {

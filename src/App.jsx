@@ -10,6 +10,7 @@ import Post from "./pages/Admin/Post";
 import { Action, EditPage, PageSetting } from "./pages/Admin/editor";
 import Blogs from "./pages/Admin/Blogs";
 import Auth from "./pages/Admin/Auth";
+import Cities from "./pages/Admin/cities/Cities";
 
 
 
@@ -64,13 +65,13 @@ function App() {
 
         <Route 
           index 
-          path="/page-setting" 
+          path="/page-setting/:id" 
           element={<PageSetting />} 
         />
 
         <Route 
           index 
-          path="/status" 
+          path="/status/:slug" 
           element={<Action />} 
         />
 
@@ -82,7 +83,7 @@ function App() {
 
         <Route 
           index 
-          path="/edit" 
+          path="/edit/:id" 
           element={<EditPage />} 
         />
 
@@ -91,6 +92,12 @@ function App() {
           path="/login" 
           element={<Auth />} 
         />
+        <Route 
+          index 
+          path="/manage-cities" 
+          element={<Cities />} 
+        />
+        
       </Routes>
     </div>
   );

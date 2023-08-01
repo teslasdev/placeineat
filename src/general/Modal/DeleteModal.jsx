@@ -6,17 +6,17 @@ import {useDispatch } from "react-redux";
 const LogoutModal = () => {
   const dispatch = useDispatch();
   const {del , isLoading} = useDelete()
-  const dismiss = () => dispatch(toggleDeleteModal({data: {modalState : false,blogID : ""}}));
+  const dismiss = () => dispatch(toggleDeleteModal({data: {modalState : false, blogID : ""}}));
   return (
     <div
       id="popup-modal"
       tabIndex={-1}
-      className="container overflow-y-auto overflow-x-hidden fixed 
-      top-0 right-0 left-0 z-50 min-w-full md:inset-0 h-modal md:h-full 
+      className="container h-full overflow-y-auto overflow-x-hidden fixed 
+      top-0 right-0 left-0 z-50 min-w-full md:inset-0 h-modal md:h-screen 
       backdrop-blur-sm backdrop-brightness-50"
     >
       <div className="flex relative p-4 w-full justify-center pt-28 pb-72">
-        <div className="relative sm:w-full w-[30%] bg-white rounded-lg shadow">
+        <div className="relative w-full md:w-[30%] bg-white rounded-lg shadow">
           <button
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent 

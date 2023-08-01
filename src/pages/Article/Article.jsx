@@ -1,8 +1,6 @@
 import React from 'react'
 import Logo from '../../assets/logoplacetoeat.png'
-import { Link, useParams } from 'react-router-dom'
-import {AiOutlineArrowRight ,AiOutlineArrowLeft} from 'react-icons/ai'
-import {RxCaretRight} from 'react-icons/rx'
+import { useParams } from 'react-router-dom'
 import { useGetPostByslug } from '../helpers/api-hooks/usePost'
 import Loader from '../helpers/components/Loader'
 
@@ -13,12 +11,12 @@ const Article = () => {
    console.log(data)
   return (
       <div className='bg-white'>
-         {isLoading && <Loader />}
          <div className='md:p-6 px-3 py-6 w-[200px] md:w-[300px]'>
             <img src={Logo} alt=""  />
          </div>
 
-         {data?.map((item , index ) => {
+
+         {isLoading ? <Loader/> : data?.map((item , index ) => {
          return (
          <div className='flex flex-col items-center justify-center py-6 md:py-12'>
             <div className='flex justify-start items-start w-[90%] md:w-[65%]'>

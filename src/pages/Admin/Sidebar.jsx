@@ -1,20 +1,21 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { RxDashboard } from 'react-icons/rx'
-import { ImBlog } from 'react-icons/im'
+import { ImAccessibility, ImBlog, ImUser, ImUsers } from 'react-icons/im'
 import { FiLogOut } from 'react-icons/fi'
 import Logo from "../../assets/logoplacetoeat.png";
 import { toggleLogoutModal } from '../../react-redux/reducers/modal';
 import { useDispatch } from 'react-redux';
 import { IoClose } from 'react-icons/io5'
+import { BsCassetteFill, BsPieChart } from 'react-icons/bs'
 
 
 const Sidebar = ({isOpen}) => {
    const dispatch = useDispatch();
    const location = useLocation();
   return (
-      <div className='relative hidden w-[20%] p-4 md:flex flex-col  h-full rounded-md bg-white shadow-md' style={{ width : isOpen && '50%' , position : isOpen && "fixed" , display : isOpen && "flex"}}>
-         <div className="w-[150px] md:w-[200px]">
+      <div className='relative hidden w-[25%] p-4 md:flex flex-col  h-full rounded-md bg-white shadow-md' style={{ width : isOpen && '60%' , position : isOpen && "fixed" , display : isOpen && "flex"}}>
+         <div className="w-[100px] md:w-[200px]">
             <img src={Logo} alt="Logo" />
          </div>
          <nav className='p-3 py-8 flex flex-col gap-6'>
@@ -28,6 +29,24 @@ const Sidebar = ({isOpen}) => {
                <Link to="/blogs" className='flex items-center gap-8'>
                   <span className='text-gray-500'><ImBlog size={20} /></span>
                   <span className='text-sm text-gray-400'>Blogs</span>
+               </Link>
+            </li>
+            <li className={`${location.pathname === '/manage-cities' && "bg-[#e8ffed]"} flex justify-start   p-3 rounded-md }`}>
+               <Link to="/manage-cities" className='flex items-center gap-8'>
+                  <span className='text-gray-500'><ImAccessibility size={20} /></span>
+                  <span className='text-sm text-gray-400'>Manage Cities</span>
+               </Link>
+            </li>
+            <li className={`${location.pathname === '/manage-users' && "bg-[#e8ffed]"} flex justify-start   p-3 rounded-md }`}>
+               <Link to="/blogs" className='flex items-center gap-8'>
+                  <span className='text-gray-500'><ImUsers size={20} /></span>
+                  <span className='text-sm text-gray-400'>Manage Users</span>
+               </Link>
+            </li>
+            <li className={`${location.pathname === '/manage-users' && "bg-[#e8ffed]"} flex justify-start   p-3 rounded-md }`}>
+               <Link to="/blogs" className='flex items-center gap-8'>
+                  <span className='text-gray-500'><BsPieChart size={20} /></span>
+                  <span className='text-sm text-gray-400'>System Preference</span>
                </Link>
             </li>
          </nav>
