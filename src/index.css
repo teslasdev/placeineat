@@ -20,21 +20,17 @@ h5,
 h6 {
   line-height: 40px;
 }
-
 .overflow-scrolling-hidden::-webkit-scrollbar {
   width: 0px;
 }
-
 p  {
   line-height: 30px !important;
   color: #434343;
   @apply text-sm
 }
-
 li {
   list-style: none;
 }
-
 td {
   width: 120px;
   @apply flex items-center justify-center

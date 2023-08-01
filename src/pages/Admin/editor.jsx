@@ -3,8 +3,7 @@ import Sidebar from './Sidebar'
 import { BsPencilFill, BsPhone, BsTablet  } from 'react-icons/bs'
 import { IoCheckmarkCircleSharp } from 'react-icons/io5'
 import { TailSpin } from 'react-loader-spinner';
-import {  onPage} from '../../react-redux/reducers/editor'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import 'react-quill/dist/quill.snow.css'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify';
@@ -13,7 +12,7 @@ import {  useLocation, useNavigate, useParams } from 'react-router-dom'
 import convertToBase64  from '../helpers/convert'
 import { useGetPostById, useGetPostByslug } from '../helpers/api-hooks/usePost'
 import Loader from '../helpers/components/Loader';
-import { FormEditor } from './components/formEditor';
+import { FormEditor } from './components/FormEditor';
 import PostPreview from './components/PostPreview';
 
 
@@ -21,11 +20,9 @@ export const Editor = () => {
    const dispatch = useDispatch();
    const location = useLocation();
    const navigate = useNavigate();
-   const [editTitle , setTitle] = useState(false);
-   const [isLoading, setIsLoading] = useState(false)
+   const [isLoading, setIsLoading] = useState(false);
    const [userInfo, setuserInfo] = useState("");
    var toolbarOptions = [
-     
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
       ['blockquote', 'code-block'],
     
@@ -43,8 +40,7 @@ export const Editor = () => {
     
       ['clean'] ,
       ['link', 'image'],                                     // remove formatting button
-    ];
-    
+   ];
    const module = {
       toolbar:toolbarOptions
    }
