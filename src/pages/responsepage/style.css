@@ -27,15 +27,12 @@
 .res-title {
   font-weight: 700;
   font-size: 30px;
-  background: #284c63;
   height: 77px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   display: flex;
-  justify-content: flex-start;
-  padding-left: 10px;
-  align-items: center;
-  max-width: 40%;
+  width: 100%;
+
 }
 .res-title a {
   color: #fff;

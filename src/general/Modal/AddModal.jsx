@@ -1,19 +1,79 @@
-import { useState } from "react";
-import { useCreateCity } from "../../pages/helpers/api-hooks/useCity";
+import { useRef, useState } from "react";
 import { toggleOpenModal } from "../../react-redux/reducers/modal";
 import {useDispatch } from "react-redux";
 import { InputForm } from "../../pages/Admin/components/inputForm/inputs";
 import Loader from "../../pages/helpers/components/Loader";
-import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import convertToBase64 from "../../pages/helpers/convert";
+import axios from "axios";
 const AddModal = () => {
   const dispatch = useDispatch();
-  const {formik , isLoading} = useCreateCity()
   const dismiss = () => dispatch(toggleOpenModal({data: {modalState : false, id : ""}}));
+  const [isLoading , setIsLoading] = useState(false)
+  const inputFile = useRef(null)
+  const [file , setFile] = useState(null)
+  const [infoCity ,setInfo] = useState({
+    name : '',
+    description : '',
+    featured_img : '',
+    status : 1,
+    error : "false"
+  })
 
-
+  const onButtonClick = () => {
+    // `current` points to the mounted file input element
+    inputFile.current.click();
+  };
+  const onUpload = async e => {
+    const filePath = e.target.files[0];
+    const base64 = await convertToBase64(e.target.files[0])
+    setFile(base64);
+    setInfo({...infoCity ,featured_img : filePath.name })
+    const formData = new FormData()
+    formData.append("file", filePath);
+    fetch(import.meta.env.VITE_APP_BACKEND_URL + "upload_files", {
+      method: 'POST',
+      content : "multipart/form-data",
+      body : formData,
+    })
+    .then(res => {
+      if(!res.ok) {
+        toast.warning('Error Uploading Image,Try again')
+      }
+      return res.json()
+    })
+    .then(data => {
+      setId(data.data)
+    })
+    .catch((err) => ("Error occured", err));
+    
+ }
   const handleSubmit = (e) => {
     e.preventDefault();
-    formik.handleSubmit();
+    setIsLoading(true)
+    if(!infoCity.name  || !infoCity.description) {
+      setInfo({...infoCity , error : "true"})
+      setIsLoading(false)
+      return;
+    } else {
+      axios.post(import.meta.env.VITE_APP_BACKEND_URL + "cities/" , infoCity)
+      .then((res) => {
+        if(res.data.success) {
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000)
+          toast.success(res.data.message)
+          dispatch(toggleOpenModal({ data: { modalState : false , id : ""} }));
+        }  else {
+          setIsLoading(false)
+          toast.warning(res.data.message)
+        }
+        
+      }).catch((err) => {
+        setIsLoading(false)
+        toast.warning(err)
+      })
+    }
   };
   return (
     <div
@@ -53,28 +113,32 @@ const AddModal = () => {
                 className="w-[100%] rounded-md h-[40px] text-black" 
                 label="City Name" placeholder="" 
                 text="text" 
-                error={formik.errors.name}
-                onChange={formik.handleChange}
+                Value={infoCity.name}
+                error={infoCity.error}
+                onChange={(e) => setInfo({...infoCity ,name : e.target.value})}
               />
             </div>
             <div className="w-full">
               <InputForm 
+                textArea="true"
                 name="description"
                 className="w-[100%] rounded-md h-[100px] text-black" 
                 label="Decription(optional)" placeholder="" 
                 text="text" 
-                onChange={formik.handleChange} 
+                error={infoCity.error}
+                Value={infoCity.description}
+                onChange={(e) => setInfo({...infoCity , description : e.target.value})}
               />
             </div>
-
             <div className="w-full">
-              <div className="border-dotted border-2 border-gray-200 flex items-center justify-center text-gray-200 rounded-md w-[100%] h-[200px]">
-                +
+              <input type="file"  ref={inputFile} onChange={onUpload}  name="files" id="" className='p-2 outline-none rounded-md mt-4 w-[50%]' hidden/>
+              <div className="border-dotted border-2 border-gray-200 flex items-center justify-center text-gray-200 rounded-md w-[100%] h-[200px]" onClick={onButtonClick}>
+                {file !== null ? <img src={file} alt="" className='w-full rounded-md h-full object-cover' /> : "+"}
               </div>
             </div>
 
             <div className="w-full"> 
-              <div className="bg-green-300 rounded-full h-[40px] flex items-center justify-center text-white text-sm cursor-pointer" onClick={handleSubmit}>
+              <div className="bg-green-300 rounded-full h-[40px] flex items-center justify-center text-white text-sm cursor-pointer" onClick={(e) => handleSubmit(e)}>
                 {isLoading ? <Loader /> : 'Add City'}
               </div>
             </div>

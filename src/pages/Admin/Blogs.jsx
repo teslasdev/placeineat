@@ -4,7 +4,7 @@ import { BsPencilFill } from 'react-icons/bs'
 import { useSelector , useDispatch } from 'react-redux';
 import { modalSelector , toggleDeleteModal } from '../../react-redux/reducers/modal';
 import LogoutModal from '../../general/Modal/LogoutModal';
-import DeleteModal from '../../general/Modal/DeleteModal'
+import DeleteModal from '../../general/Modal/DeleteModal';
 import Sidebar from './Sidebar';
 import { Link, useNavigate } from 'react-router-dom';
 import {useGetPost} from '../helpers/api-hooks/usePost';
@@ -14,7 +14,7 @@ import Auth from './Auth';
 import { IoClose } from 'react-icons/io5';
 import { FaBars } from 'react-icons/fa';
 import Loader from '../helpers/components/Loader';
-import { onPage } from '../../react-redux/reducers/editor';
+
 
 
 const Blogs = () => {
@@ -53,7 +53,7 @@ const Blogs = () => {
                            <div className='flex py-10 gap-3' key={index}>
                            <div className='bg-white shadow-md rounded-md w-[250px] h-[300px]'>
                               <img
-                                 src={import.meta.env.VITE_IMAGE + item.featured_img}
+                                 src={`https://3ad-vinee.sfo3.cdn.digitaloceanspaces.com/`+item.featured_img }
                                  className="w-full h-full rounded-md shadow-lg object-cover"
                                  alt="Post Image"
                                  
@@ -94,7 +94,7 @@ const Blogs = () => {
          </div>
 
          {logoutModalOpen && <LogoutModal />}
-         {DeleteModalOpen && <DeleteModal />}
+         {DeleteModalOpen && <DeleteModal type="posts/" />}
 
          
       </div> 

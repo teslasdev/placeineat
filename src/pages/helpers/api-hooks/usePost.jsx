@@ -39,10 +39,9 @@ export const useGetPostByslug = (value) => {
   return { data , isRunning};
 };
 // Delete GradeLevel
-export const useDelete = () => {
+export const useDelete = (value) => {
   const dispatch = useDispatch()
-  const location = useLocation()
-  const url = import.meta.env.VITE_APP_BACKEND_URL + "posts/";
+  const url = import.meta.env.VITE_APP_BACKEND_URL + value;
   const { selectedToDelete } = useSelector(modalSelector)
   console.log(selectedToDelete)
   const { mutate, isLoading } = useMutation((type) => {
@@ -55,9 +54,11 @@ export const useDelete = () => {
     try {
       mutate(selectedToDelete, {
         onSuccess: () => {
-          dispatch(toggleDeleteModal({ data: { modalState : false , blogID : ""} }));
-          toast.success('Blog Deleted Successfully');
-          // window.location.reload();
+          setTimeout(() => {
+            dispatch(toggleDeleteModal({ data: { modalState : false , blogID : ""} }));
+            window.location.reload();
+          },3000)
+          toast.success('Deleted Successfully');
         },
       });
     } catch (error) {

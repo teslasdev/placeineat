@@ -11,6 +11,9 @@ import { Action, EditPage, PageSetting } from "./pages/Admin/editor";
 import Blogs from "./pages/Admin/Blogs";
 import Auth from "./pages/Admin/Auth";
 import Cities from "./pages/Admin/cities/Cities";
+import System from "./pages/Admin/sytem/System";
+import Cuisine from "./pages/Admin/cuisine/Cuisines";
+import Preference from "./pages/Admin/preference/Preference";
 
 
 
@@ -96,6 +99,23 @@ function App() {
           index 
           path="/manage-cities" 
           element={<Cities />} 
+        />
+
+        <Route 
+          index 
+          path="/manage-preference" 
+          element={<Preference />} 
+        />
+
+        <Route 
+          index 
+          path="/manage-cuisine" 
+          element={<Cuisine />} 
+        />
+        <Route 
+          index 
+          path="/system-preference" 
+          element={<System />} 
         />
         
       </Routes>

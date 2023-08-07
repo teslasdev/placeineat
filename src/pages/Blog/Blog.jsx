@@ -3,8 +3,8 @@ import Logo from "../../assets/logoplacetoeat.png";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { RxCaretRight } from "react-icons/rx";
-import { useGetPost } from "../helpers/api-hooks/usePost";
 import Loader from "../helpers/components/Loader";
+import { useGetCity } from "../helpers/api-hooks/useCity";
 
 
 const Blog = () => {
@@ -26,7 +26,7 @@ const Blog = () => {
     },
   ];
 
-  const { data , isLoading } = useGetPost();
+  const { data , isLoading } = useGetCity();
  
   return (
     <div className="bg-white">
@@ -34,12 +34,12 @@ const Blog = () => {
         <img src={Logo} alt=""  />
       </div>
 
-      <div className="md:h-[500px] h-[250px] md:p-24 p-6 flex flex-col-reverse md:flex-row items-center justify-between">
+      <div className="md:h-[500px] h-[280px] md:p-24 p-6 flex flex-col-reverse md:flex-row items-center justify-between">
         <div className="w-full md:w-[40%]">
           <h3 className="md:text-[55px] text-[40px] font-[700] text-[#5DCE76]">
             Let’s discover
           </h3>
-          <h4 className="md:text-[55px] text-[35px] font-[400] text-[#5DCE76]">
+          <h4 className="md:text-[55px] text-[35px] mt-5 font-[400] text-[#5DCE76]">
             your next meal
           </h4>
           <p className="tex-[22px] font-[400] mt-2">
@@ -104,78 +104,25 @@ const Blog = () => {
           </div>
 
           <div className="md:w-[90%] w-full overflow-scroll overflow-scrolling-hidden">
-            <div className="flex md:gap-8 gap-4 md:min-w-[130%]">
-              <div className="w-[268.5px] flex flex-col items-center justify-center gap-3">
-                <div className="w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm">
-                  <img
-                    src="/images/restaurant.jpg"
-                    className="w-full h-full rounded-md shadow-lg object-cover"
-                    alt=""
-                   
-                  />
-                </div>
-                <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
-                  Discover
-                </Link>
-              </div>
-
-              <div className="w-[268.5px] flex flex-col items-center justify-center gap-3">
-                <div className="w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm">
-                  <img
-                    src="/images/restaurant2.jpg"
-                    className="w-full h-full rounded-md shadow-lg object-cover"
-                    alt=""
-                  
-                  />
-                </div>
-                <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
-                  Discover
-                </Link>
-              </div>
-              <div className="w-[268.5px] flex flex-col items-center justify-center gap-3">
-                <div className="w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm">
-                  <img
-                    src="/public/images/restaurant1.jpg"
-                    className="w-full h-full rounded-md shadow-lg object-cover"
-                    alt=""
-                    
-                  />
-                </div>
-                <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
-                  Discover
-                </Link>
-              </div>
-              <div className="w-[268.5px] flex flex-col items-center justify-center gap-3">
-                <div className="w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm">
-                  <img
-                    src="/images/restaurant2.jpg"
-                    className="w-full h-full rounded-md shadow-lg object-cover"
-                    alt=""
-                   
-                  />
-                </div>
-                <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
-                  Discover
-                </Link>
-              </div>
-              <div className="w-[268.5px] flex flex-col items-center justify-center gap-3">
-                <div className="w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm">
-                  <img
-                    src="/images/restaurant2.jpg"
-                    className="w-full h-full rounded-md shadow-lg object-cover"
-                    alt=""
-                    
-                  />
-                </div>
-                <h4 className="text-sm md:text-[18px]">Iceland</h4>
-                <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
-                  Discover
-                </Link>
-              </div>
+          <div className="flex md:gap-8 gap-4 md:min-w-[130%]">
+            {data && data.map((item) => {
+              return (
+                  <div className="w-[268.5px] flex flex-col items-center justify-center gap-3">
+                    <div className="w-full md:h-[317.05px] h-[100px] bg-gray-300 md:rounded-md rounded-sm">
+                      <img
+                        src={`https://3ad-vinee.sfo3.cdn.digitaloceanspaces.com/`+item.featured_img }
+                        className="w-full h-full rounded-md shadow-lg object-cover"
+                        alt=""
+                      />
+                    </div>
+                    <h4 className="text-sm md:text-[18px]">{item.name}</h4>
+                    <Link className="text-[#8A53FF] text-xs md:text-[16px]" to="/city">
+                      Discover
+                    </Link>
+                  </div>
+               
+              )
+            })}
             </div>
           </div>
 

@@ -8,6 +8,7 @@ import { toggleLogoutModal } from '../../react-redux/reducers/modal';
 import { useDispatch } from 'react-redux';
 import { IoClose } from 'react-icons/io5'
 import { BsCassetteFill, BsPieChart } from 'react-icons/bs'
+import { MdLocationCity, MdOutlineRoomPreferences } from 'react-icons/md'
 
 
 const Sidebar = ({isOpen}) => {
@@ -37,14 +38,27 @@ const Sidebar = ({isOpen}) => {
                   <span className='text-sm text-gray-400'>Manage Cities</span>
                </Link>
             </li>
+            <li className={`${location.pathname === '/manage-preference' && "bg-[#e8ffed]"} flex justify-start   p-3 rounded-md }`}>
+               <Link to="/manage-preference" className='flex items-center gap-8'>
+                  <span className='text-gray-500'><MdOutlineRoomPreferences size={20} /></span>
+                  <span className='text-sm text-gray-400'>Manage Preferences</span>
+               </Link>
+            </li>
+            <li className={`${location.pathname === '/manage-cuisine' && "bg-[#e8ffed]"} flex justify-start   p-3 rounded-md }`}>
+               <Link to="/manage-cuisine" className='flex items-center gap-8'>
+                  <span className='text-gray-500'><MdLocationCity size={20} /></span>
+                  <span className='text-sm text-gray-400'>Manage Cuisines</span>
+               </Link>
+            </li>
+
             <li className={`${location.pathname === '/manage-users' && "bg-[#e8ffed]"} flex justify-start   p-3 rounded-md }`}>
                <Link to="/blogs" className='flex items-center gap-8'>
                   <span className='text-gray-500'><ImUsers size={20} /></span>
                   <span className='text-sm text-gray-400'>Manage Users</span>
                </Link>
             </li>
-            <li className={`${location.pathname === '/manage-users' && "bg-[#e8ffed]"} flex justify-start   p-3 rounded-md }`}>
-               <Link to="/blogs" className='flex items-center gap-8'>
+            <li className={`${location.pathname === '/system-preference' && "bg-[#e8ffed]"} flex justify-start   p-3 rounded-md }`}>
+               <Link to="/system-preference" className='flex items-center gap-8'>
                   <span className='text-gray-500'><BsPieChart size={20} /></span>
                   <span className='text-sm text-gray-400'>System Preference</span>
                </Link>

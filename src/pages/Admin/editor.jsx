@@ -88,6 +88,7 @@ export const Editor = () => {
          toast.error("Error Uploading , Try Again")
       });
    }
+
    return (
       <div className='bg-[#f3fff5] h-screen fixed w-full p-4'>
          <ToastContainer position="bottom-center" />
@@ -131,7 +132,7 @@ export const Editor = () => {
                      </div>
                   </div>
 
-                  <FormEditor onEditorStateChange={onEditorStateChange} module={module} userInfo={userInfo} onChangeValue={onChangeValue} description={description} />
+                  <FormEditor onEditorStateChange={onEditorStateChange}  module={module} userInfo={userInfo} onChangeValue={onChangeValue} description={description} />
                </div>
             </div>
          </div>
@@ -274,6 +275,7 @@ export const PageSetting = () => {
    const [pathFile , setFilesPath] = useState([])
    const [defaultImg, setDefault] = useState(0)
    const navigate = useNavigate();
+   
    const onButtonClick = () => {
       // `current` points to the mounted file input element
       inputFile.current.click();
@@ -286,10 +288,11 @@ export const PageSetting = () => {
       setFiles(prevFile => [...prevFile, base64]);
       setFilesPath(prevFile => [...prevFile,filePath.name]);
       const formData = new FormData()
-      formData.append("files", filePath);
+      formData.append("file", filePath);
       fetch(import.meta.env.VITE_APP_BACKEND_URL + "upload_files", {
          method: 'POST',
-         body: formData,
+         content : "multipart/form-data",
+         body : formData,
       })
       .then((res) => console.log(res))
       .catch((err) => ("Error occured", err));
@@ -351,6 +354,7 @@ export const PageSetting = () => {
          });
       }
    }
+
 
    return (
       <div className='bg-[#f3fff5] h-screen fixed w-full p-4'>
@@ -429,15 +433,12 @@ export const PageSetting = () => {
 
 
 export const Action = () => {
-   const { slug } = useParams(); // 'name'
-   const { data , isRunning } = useGetPostByslug(slug) 
    const [isLoading, setIsLoading] = useState(false)
    const navigate = useNavigate();
    const handleSubmit = () => {
       const dataForm = {
          status : 0,
       }
-      console.log(dataForm);
       axios.put(import.meta.env.VITE_APP_BACKEND_URL + "posts/"+ 4, {
          body: dataForm
        })
@@ -460,6 +461,8 @@ export const Action = () => {
       }, 3000)
       toast.success("Post saved to draft");
    }
+   const { slug } = useParams(); // 'name'
+   const { data , isRunning } = useGetPostByslug(slug) 
    return (
       <div className='bg-[#f3fff5] h-screen fixed w-full p-4'>
          <ToastContainer position="bottom-center" />
@@ -479,7 +482,7 @@ export const Action = () => {
                   </div>
 
                   <div className='h-[90%]'>
-                     <PostPreview data={data} isRunning={isRunning}  />
+                     <PostPreview data={data} isRunning={isRunning}  /> 
                   </div>
                </div>
             </div>

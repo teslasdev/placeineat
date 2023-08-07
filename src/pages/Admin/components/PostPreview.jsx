@@ -28,7 +28,7 @@ const PostPreview = ({
                            <div className='w-full absolute md:text-[45px] text-[30px] sm:text-[55px] h-full flex rounded-md justify-center items-center text-center bg-black/70 text-white font-bold'>
                               <h3 className='w-full'>{item.title}</h3>
                            </div>
-                           <img src={'/uploads/' + item.featured_img} alt="" className='h-full w-full rounded-md' />
+                           <img src={`https://3ad-vinee.sfo3.cdn.digitaloceanspaces.com/`+item.featured_img }  alt="" className='h-full w-full rounded-md' />
                         </div>
                         <div className=''>
                            <div dangerouslySetInnerHTML={{__html: item.content,}} />

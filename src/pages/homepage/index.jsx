@@ -1,15 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import "./style.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { FallingLines } from "react-loader-spinner";
-import { useGetCuisines, useGetPreferences } from "../helpers/api-hooks/useGetData";
+import ResponsePage from "../responsepage";
+
+
 const Home = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [isLoadings, setLoading] = useState(null);
-  const [preferences , setPreferences] = useState([])
+  const [preference , setPreference] = useState([])
+  const [cruisine , setCuisine] = useState([])
+  const [promptPreference, setPromptPreference] = useState([])
+  const [promptCuisine, setPromptCuisine] = useState([])
+  const [systemPrompt,setSystemPrompt] = useState("")
+  const [responseData , setResponseData] = useState(true)
+  const [data , setData] = useState()
+  useEffect(() => {
+    axios.get(import.meta.env.VITE_APP_BACKEND_URL+"preference/0").then((res) => {
+      setPreference(res.data.data)
+   })
+  }, [])
+
+  useEffect(() => {
+    axios.get(import.meta.env.VITE_APP_BACKEND_URL+"prompt/1").then((res) => {
+      setSystemPrompt(res.data.data.prompt)
+    })
+ },[])
+
+  useEffect(() => {
+    axios.get(import.meta.env.VITE_APP_BACKEND_URL+"preference/1").then((res) => {
+      setCuisine(res.data.data)
+   })
+  }, [])
+
+  const handlePreference = (value) => {
+    if(!promptPreference.includes(value)) {
+      setPromptPreference(prev => [...prev , value ])
+    } else {
+      setPromptPreference(promptPreference.filter(item => item !== value))
+    }
+  }
+  const handleCuisine = (value) => {
+    if(!promptCuisine.includes(value)) {
+      setPromptCuisine(prev => [...prev , value ])
+    } else {
+      setPromptCuisine(promptCuisine.filter(item => item !== value))
+    }
+    console.log(promptCuisine)
+  }
   function gotoResponsePage() {
     setLoading(<FallingLines
       color="#ffffff"
@@ -25,23 +66,35 @@ const Home = () => {
       setLoading(null);
       return;
     }
-    axios.post(import.meta.env.VITE_APP_BACKEND_URL, {
-        prompt: search,
-      })
+    if(promptPreference == [] || promptCuisine == []) {
+      setPromptPreference([
+        'anywhere'
+      ])
+
+      setPromptCuisine([
+        'anywhere'
+      ])
+    }
+    const data = {
+      system : systemPrompt,
+      prompt : search,
+      preference : promptPreference,
+      cuisine : promptCuisine
+    }
+      axios.post(import.meta.env.VITE_APP_BACKEND_URL, data)
       .then(function (response) {
         setLoading(null);
-        localStorage.setItem("placestoeat", response.data.bot.trim());
-        navigate("/response");
+        setResponseData(false)
+        setData(response.data.result.attributes)
       })
       .catch(function (error) {
         console.log(error);
       });
   }
-  const {data , isLoading} = useGetPreferences()
-  const  {result , isLoadingUp} = useGetCuisines()
   const [checked,setCheck] = useState(0)
   return (
-    <div className="home-body-container">
+    <div className="relative home-body-container">
+      {responseData && responseData ?
       <div className="overlay">
         <Navbar className={"blog-btn"} logo={"logo"} />
         <div className="home-content">
@@ -71,30 +124,27 @@ const Home = () => {
             </div>
           </div>
           <div className="filter-main mb-0 md:mb-5">
-            <div className="flex shadow-lg bg-[#D9D9D9] md:w-[15%] w-[40%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{visibility : checked === 1 ? "" : 'hidden'}}>
+            <div className="flex shadow-lg bg-[#D9D9D9] w-[40%] md:w-[15%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{ visibility : checked == 1 ? '' : 'hidden' }}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
-            
-             {data?.map((item , index) => {
-              return (
-                <div className="flex items-center gap-4 h-10" key={index} >
-                  <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                  <div className="food-pref">{item.name}</div>
-                </div>
-              )
-             })}
-              
+                {preference && preference.map((item , index) => {
+                  return (
+                    <div className="flex items-center gap-4 h-10" key={index} >
+                      <div className={`w-[17px] h-[17px] border border-solid rounded-sm flex  border-[#22449A] ${promptPreference.includes(item.name) && 'bg-[#22449A]'} `} onClick={() => handlePreference(item.name)} />
+                      <div className="food-pref">{item.name}</div>
+                    </div>
+                  )
+                })} 
             </div>
-            <div className="flex shadow-lg bg-[#D9D9D9] md:w-[15%] w-[40%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{visibility : checked === 2 ? "" : 'hidden'}}>
+            <div className="flex shadow-lg bg-[#D9D9D9] w-[40%] md:w-[15%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{ visibility : checked == 2 ? '' : 'hidden' }}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
-             
-              {result?.map((item , index) => {
-                return (
-                  <div className="flex items-center gap-4 h-10"  key={index}>
-                    <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A]" />
-                    <div className="food-pref">{item.name}</div>
-                  </div>
-                )
-              })}
+                {cruisine && cruisine.map((item , index) => {
+                  return (
+                    <div className="flex items-center gap-4 h-10" key={index} >
+                       <div className={`w-[17px] h-[17px] border border-solid rounded-sm flex  border-[#22449A] ${promptCuisine.includes(item.name) ? 'bg-[#22449A]' : 'bg-white' } `} onClick={() => handleCuisine(item.name)} />
+                      <div className="food-pref">{item.name}</div>
+                    </div>
+                  )
+                })} 
             </div>
           </div>
         </div>
@@ -117,6 +167,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+      :
+      <ResponsePage input={search} preference={promptPreference}  cuisine={promptCuisine} data={data} />
+      }
     </div>
   );
 };

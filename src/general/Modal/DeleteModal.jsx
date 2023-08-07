@@ -3,9 +3,11 @@ import { useDelete } from "../../pages/helpers/api-hooks/usePost";
 import Loader from "../../pages/helpers/components/Loader";
 import { toggleDeleteModal } from "../../react-redux/reducers/modal";
 import {useDispatch } from "react-redux";
-const LogoutModal = () => {
+const DeleteModal = ({
+  type
+}) => {
   const dispatch = useDispatch();
-  const {del , isLoading} = useDelete()
+  const {del , isLoading} = useDelete(type)
   const dismiss = () => dispatch(toggleDeleteModal({data: {modalState : false, blogID : ""}}));
   return (
     <div
@@ -77,4 +79,4 @@ const LogoutModal = () => {
   );
 };
 
-export default LogoutModal;
+export default DeleteModal;
