@@ -7,9 +7,9 @@ import { useEffect , useState } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { SiWebpack } from "react-icons/si";
+import { TypeAnimation } from "react-type-animation";
 const ResponsePage = ({ input, preference , cuisine , data }) => {
   const text = `Top Restaurants in ${input || "[City]"}`;
-  console.log(data)
   return (
     <div className="response-container">
       <Navbar className={"res-btn"} logo={"res-logo"} />
@@ -33,25 +33,43 @@ const ResponsePage = ({ input, preference , cuisine , data }) => {
           return (
             <div className="res-col-container">
               <div className="res-title">
-                <div className="bg-[#284c63] h-full flex pl-5 p-2 items-center rounded-r-full min-w-[40%]">
-                  <a href={item.website}>{index + 1}. {item.name}</a>
+                <div className="bg-[#284c63] h-full flex pl-5 p-2 items-center rounded-r-full min-w-[30%]">
+                  <a href={item.website}>{index + 1}. <TypeAnimation
+                        sequence={item.name}
+                        wrapper="span"
+                        speed={50 * index}
+                        repeat={0}
+                        cursor={false}
+                      /></a>
                 </div>
               </div>
               <div className="res-container-body">
                 <div className="res-address">
                   <div className="mid-dolls">
                     <div className="res-dollars">
-                      <div className="dolls">${item.price_in_dollar}</div>
+                      <div className="dolls">$$${item.price_in_dollar}</div>
                     </div>
                   </div>
                   <div className="add-right">
                     <MdLocationOn className="loc-icon" />
                     <span className="address-text">
-                      {item.address}
+                    <TypeAnimation
+                        sequence={item.address}
+                        wrapper="span"
+                        speed={50 * index}
+                        repeat={0}
+                        cursor={false}
+                      />
                     </span>
                     <MdLocationOn className="loc-icon" />
                     <span className="address-text">
-                      {item.region}
+                      <TypeAnimation
+                        sequence={item.region}
+                        wrapper="span"
+                        speed={50 * index}
+                        repeat={0}
+                        cursor={false}
+                      />
                     </span>
                   </div>
                 </div>
@@ -59,11 +77,27 @@ const ResponsePage = ({ input, preference , cuisine , data }) => {
                   <div className="phone-web">
                     <div className="phone-no">
                       <FaPhoneAlt className="pho-icon" />
-                      <div className="phone-text">{item.hotline}</div>
+                      <div className="phone-text">
+                      <TypeAnimation
+                        sequence={item.hotline}
+                        wrapper="span"
+                        speed={50 * index}
+                        repeat={0}
+                        cursor={false}
+                      />
+                      </div>
                     </div>
                     <div className="phone-no">
                       <SiWebpack className="pho-icon" />
-                      <div className="phone-text">{item.website}</div>
+                      <a href={item.website} className="phone-text">
+                      <TypeAnimation
+                        sequence={item.website}
+                        wrapper="span"
+                        speed={50}
+                        repeat={0}
+                        cursor={false}
+                      />
+                      </a>
                     </div>
                   </div>
                   {item.preferences.map((pref, index) => {
@@ -73,7 +107,14 @@ const ResponsePage = ({ input, preference , cuisine , data }) => {
                 </div>
                 <div className="res-body-content">
                   <div className="res-body-text text-[18px]">
-                    {item.description}
+                    <TypeAnimation
+                      sequence={item.description}
+                      wrapper="span"
+                      speed={50}
+                      repeat={0}
+                      cursor={false}
+                    />
+                    {/* {item.description} */}
                     {/* <b> ({item.Description.split(' ').length} words)</b> */}
                     {/* <a href="www.none.com">Read more.</a> */}
                   </div>

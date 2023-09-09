@@ -51,14 +51,13 @@ const Home = () => {
     }
     console.log(promptCuisine)
   }
-  function gotoResponsePage() {
+async function gotoResponsePage() {
     setLoading(<FallingLines
       color="#ffffff"
       width="50"
       visible={true}
       ariaLabel='falling-lines-loading'
     />)
-    setCheck(0)
     if(search === '') {
       setLoading(null)
     }
@@ -81,17 +80,38 @@ const Home = () => {
       preference : promptPreference,
       cuisine : promptCuisine
     }
-      axios.post(import.meta.env.VITE_APP_BACKEND_URL, data)
-      .then(function (response) {
-        setLoading(null);
-        setResponseData(false)
-        setData(response.data.result.attributes)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      
+    const response = await fetch(import.meta.env.VITE_APP_BACKEND_URL, {
+    method: "post",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok || !response.body) {
+    throw response.statusText;
   }
-  const [checked,setCheck] = useState(0)
+  console.log(response)
+  // Here we start prepping for the streaming response
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  const loopRunner = true;
+
+  while (loopRunner) {
+    // Here we start reading the stream, until its done.
+    const { value, done } = await reader.read();
+    if (done) {
+      break;
+    }
+
+    const decodedChunk = decoder.decode(value, { stream: true });
+    setResponseData(false)
+    setData(answer => answer + decodedChunk); // update state with new chunk
+  }
+  }
+  const [checked,setCheck] = useState(false)
+  const [checked1,setCheck1] = useState(false)
   return (
     <div className="relative home-body-container">
       {responseData && responseData ?
@@ -100,7 +120,7 @@ const Home = () => {
         <div className="home-content">
           <div className="headline-text">Discover New Places To Eat</div>
           <div className="headline-text2">AI-Powered Restaurant Finder</div>
-          <div>
+          <div className="w-[50%] flex  items-center flex-col">
             <div className="search-container">
               <input
                 type="text"
@@ -112,50 +132,54 @@ const Home = () => {
                 {isLoadings || "Let`s Eat"}
               </button>
             </div>
-          </div>
-          <div className="filter-main">
-            <div className="filter-box shadow-lg" onClick={() => setCheck(1)}>
-              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A] cursor-pointer" style={{background : checked === 1 ? "#22449A" : 'white' }} />
-              <div className="food-pref">Preferences</div>
+
+          <div className="flex justify-center w-[530px] gap-3 m-3">
+            <div className="filter-box shadow-lg" onClick={() => setCheck(!checked)}>
+              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A] cursor-pointer" style={{background : checked ? "#22449A" : 'white' }} />
+              <div className="food-pref cursor-pointer">Preferences</div>
             </div>
-            <div className="filter-box shadow-lg" onClick={() => setCheck(2)}>
-              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A] cursor-pointer" style={{background : checked === 2 ? "#22449A" : 'white' }}/>
-              <div className="food-pref">Cuisines</div>
+            <div className="filter-box shadow-lg" onClick={() => setCheck1(!checked1)}>
+              <div className="w-[17px] h-[17px] border border-solid rounded-sm flex bg-white border-[#22449A] cursor-pointer" style={{background : checked1 ? "#22449A" : 'white' }}/>
+              <div className="food-pref cursor-default">Cuisines</div>
             </div>
           </div>
-          <div className="filter-main mb-0 md:mb-5">
-            <div className="flex shadow-lg bg-[#D9D9D9] w-[40%] md:w-[15%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{ visibility : checked == 1 ? '' : 'hidden' }}>
+          <div className="filter-main  relative left-[100px] z-50 mb-0 md:mb-5">
+            <div className="flex shadow-lg bg-[#D9D9D9] w-[50%] md:w-[33%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{ visibility : checked ? '' : 'hidden' }}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
                 {preference && preference.map((item , index) => {
                   return (
                     <div className="flex items-center gap-4 h-10" key={index} >
                       <div className={`w-[17px] h-[17px] border border-solid rounded-sm flex  border-[#22449A] ${promptPreference.includes(item.name) && 'bg-[#22449A]'} `} onClick={() => handlePreference(item.name)} />
-                      <div className="food-pref">{item.name}</div>
+                      <div className="food-pref cursor-pointer">{item.name}</div>
                     </div>
                   )
                 })} 
             </div>
-            <div className="flex shadow-lg bg-[#D9D9D9] w-[40%] md:w-[15%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{ visibility : checked == 2 ? '' : 'hidden' }}>
-              <div className="text-xs text-[#284C63] font-bold text-start">General</div>
-                {cruisine && cruisine.map((item , index) => {
-                  return (
-                    <div className="flex items-center gap-4 h-10" key={index} >
-                       <div className={`w-[17px] h-[17px] border border-solid rounded-sm flex  border-[#22449A] ${promptCuisine.includes(item.name) ? 'bg-[#22449A]' : 'bg-white' } `} onClick={() => handleCuisine(item.name)} />
-                      <div className="food-pref">{item.name}</div>
-                    </div>
-                  )
-                })} 
+            <div className="flex flex-col shadow-lg bg-[#D9D9D9] w-[40%] md:w-[444px] rounded-[10px] overflow-auto h-[200px] p-3" style={{ visibility : checked1 ? '' : 'hidden' }}>
+                <div className="text-xs text-[#284C63]  font-bold text-start">General</div>
+                  <div className="flex flex-wrap w-[90%]">
+                    {cruisine && cruisine.map((item , index) => {
+                      return (
+                        <div className="flex z-10 items-center w-[50%] gap-4 h-10" key={index} >
+                           <div className={`w-[17px] h-[17px] border border-solid rounded-sm flex  border-[#22449A] ${promptCuisine.includes(item.name) ? 'bg-[#22449A]' : 'bg-white' } `} onClick={() => handleCuisine(item.name)} />
+                          <div className="food-pref">{item.name}</div>
+                        </div>
+                      )
+                    })} 
+                  </div>
+                </div>
             </div>
           </div>
-        </div>
-        <div
+          
+           <div
           style={{
-            height: "10%",
+            position: "absolute",
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
             alignItems: "center",
             paddingBottom: "30px",
+            bottom : "0",
           }}
         >
           <div className="recent">Recent Searches</div>
@@ -166,9 +190,12 @@ const Home = () => {
             </marquee>
           </div>
         </div>
+        </div>
+      
       </div>
       :
-      <ResponsePage input={search} preference={promptPreference}  cuisine={promptCuisine} data={data} />
+      // <ResponsePage input={search} preference={promptPreference}  cuisine={promptCuisine} data={data?.attributes} />
+        <p className="bg-white">{data}</p>
       }
     </div>
   );
