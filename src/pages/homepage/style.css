@@ -41,7 +41,7 @@
   margin-top: 10px;
   gap: 10px;
   font-size: 15px;
-  @apply w-full justify-center
+  @apply w-full justify-between
 }
 .filter-box {
   height: 60px;
@@ -186,18 +186,11 @@
   .home-body-container {
     height: 160vh;
   }
-  .search-container {
-    width: 550px;
-    height: 70px;
-  }
+
 }
 @media only screen and (max-height: 370px) {
   .home-body-container {
     height: 170vh;
-  }
-  .search-container {
-    width: 550px;
-    height: 50px;
   }
 }
 @media only screen and (max-width: 900px) {
@@ -211,12 +204,12 @@
   .header {
     padding: 20px 3em;
   }
-  .search-container {
-    width: 600px;
+  .search-container , .dropdown {
+    width: 100%;
   }
   .filter-box {
     height: 40px;
-    width: 40%;
+    width: 50%;
   }
   .checkbox {
     width: 17px;
@@ -241,10 +234,6 @@
   .header {
     padding: 20px 2em;
   }
-  .search-container {
-    width: 550px;
-    height: 55px;
-  }
   .filter-box {
     height: 30px;
   }
@@ -266,10 +255,6 @@
     line-height: 20px;
   }
 
-  .search-container {
-    width: 90%;
-    height: 50px;
-  }
   .let-eat {
     width: 250px;
   }
@@ -313,10 +298,6 @@
   .header {
     padding: 20px 1em;
   }
-  .search-container {
-    width: 90%;
-    height: 55px;
-  }
   .let-eat {
     width: 250px;
   }
@@ -348,11 +329,6 @@
   .location-list {
     font-size: 8px;
     line-height: 20px;
-  }
-
-  .search-container {
-    width: 90%;
-    height: 55px;
   }
   .let-eat {
     width: 200px;
