@@ -41,11 +41,10 @@
   margin-top: 10px;
   gap: 10px;
   font-size: 15px;
-  @apply w-full justify-between
 }
 .filter-box {
   height: 60px;
-  width: 45%;
+  width: 22%;
   background: #d9d9d9;
   border-radius: 10px;
   display: flex;
@@ -66,7 +65,7 @@
   color: #1f394a;
 }
 .search-container {
-  width: 530px;
+  width: 45%;
   height: 70px;
   background: #d9d9d9;
   border-radius: 10px;

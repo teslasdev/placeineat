@@ -17,7 +17,7 @@ const Home = () => {
   const [promptCuisine, setPromptCuisine] = useState([])
   const [systemPrompt,setSystemPrompt] = useState("")
   const [responseData , setResponseData] = useState(true)
-  const [data , setData] = useState()
+  const [data , setData] = useState([])
   useEffect(() => {
     axios.get(import.meta.env.VITE_APP_BACKEND_URL+"preference/0").then((res) => {
       setPreference(res.data.data)
@@ -107,7 +107,7 @@ async function gotoResponsePage() {
 
     const decodedChunk = decoder.decode(value, { stream: true });
     setResponseData(false)
-    setData(answer => answer + decodedChunk); // update state with new chunk
+    setData((answer) => [...answer + decodedChunk]); // update state with new chunk
   }
   }
   const [checked,setCheck] = useState(false)
@@ -143,7 +143,7 @@ async function gotoResponsePage() {
               <div className="food-pref cursor-default">Cuisines</div>
             </div>
           </div>
-          <div className="filter-main  relative sm:left-[100px] z-50 mb-0 md:mb-5">
+          <div className="filter-main w-full sm:w-[45%] justify-between relative sm:left-[100px] z-50 mb-0 md:mb-5">
             <div className="flex shadow-lg bg-[#D9D9D9] w-[50%] sm:w-[33%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{ visibility : checked ? '' : 'hidden' }}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
                 {preference && preference.map((item , index) => {
@@ -196,8 +196,8 @@ async function gotoResponsePage() {
       
       </div>
       :
-      // <ResponsePage input={search} preference={promptPreference}  cuisine={promptCuisine} data={data?.attributes} />
-        <p className="bg-white">{data}</p>
+      <ResponsePage input={search} preference={promptPreference}  cuisine={promptCuisine} data={data} />
+        // <p className="bg-white">{data}</p>
       }
     </div>
   );
