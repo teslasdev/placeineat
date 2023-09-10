@@ -143,7 +143,7 @@ async function gotoResponsePage() {
               <div className="food-pref cursor-default">Cuisines</div>
             </div>
           </div>
-          <div className="filter-main w-full sm:w-[45%] justify-between relative sm:left-[100px] z-50 mb-0 md:mb-5">
+          <div className="filter-main justify-between relative md:w-[45%]  w-full  z-50 mb-0 md:mb-5">
             <div className="flex shadow-lg bg-[#D9D9D9] w-[50%] sm:w-[33%] rounded-[10px] overflow-scroll h-[200px] p-3 flex-col" style={{ visibility : checked ? '' : 'hidden' }}>
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
                 {preference && preference.map((item , index) => {

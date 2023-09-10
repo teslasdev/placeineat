@@ -206,6 +206,9 @@
   .search-container , .dropdown {
     width: 100%;
   }
+  .filter-main {
+    width: 100% !important; 
+  }
   .filter-box {
     height: 40px;
     width: 50%;
@@ -361,11 +364,6 @@
   .let-eat {
     width: 150px;
     font-size: 14px;
-  }
-  .filter-main {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
   }
   .filter-box {
     height: 10px;
