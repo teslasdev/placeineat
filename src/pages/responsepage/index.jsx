@@ -39,10 +39,13 @@ const ResponsePage = ({ input, preference , cuisine , data }) => {
               </div>
               <div className="res-container-body">
                 <div className="res-address">
+                  <div>
+                    <h3 className="italic md:text-3xl text-sm mr-5 font-bold">{item.region}</h3>
+                  </div>
                   <div className="mid-dolls">
-                    <div className="res-dollars">
-                      <h3 className="italic text-3xl mr-5">{item.region}</h3>
-                      <div className="dolls">$$${item.price_in_dollar}</div>
+                    <div className="res-dollars flex items-center">
+                      
+                      <div className="dolls">$${item.price_in_dollar}</div>
                     </div>
                   </div>
                   <div className="add-right">
@@ -73,9 +76,11 @@ const ResponsePage = ({ input, preference , cuisine , data }) => {
                       </a>
                     </div>
                   </div>
-                  {item.preferences.map((pref, index) => {
-                    return <div className="three-text">{pref}</div>
-                  })}
+                  <div className="flex">
+                  <div className="three-text">{item.region},</div>
+                    <div className="three-text">{item.preferences[0]},</div>
+                    <div className="three-text">{cuisine[0]}</div>
+                  </div>
                   
                 </div>
                 <div className="res-body-content">

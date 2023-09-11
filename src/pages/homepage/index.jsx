@@ -153,7 +153,7 @@ async function gotoResponsePage() {
               <div className="text-xs text-[#284C63] font-bold text-start">General</div>
                 {preference && preference.map((item , index) => {
                   return (
-                    <div className="flex items-center gap-4 h-10" key={index} >
+                    <div className="flex items-center gap-4 h-10 cursor-pointer" key={index} onClick={() => handlePreference(item.name)}>
                       <div className={`w-[17px] h-[17px] border border-solid rounded-sm flex  border-[#22449A] ${promptPreference.includes(item.name) && 'bg-[#22449A]'} `} onClick={() => handlePreference(item.name)} />
                       <div className="food-pref cursor-pointer">{item.name}</div>
                     </div>
@@ -165,8 +165,8 @@ async function gotoResponsePage() {
                   <div className="flex flex-wrap md:w-[90%] w-[200px]">
                     {cruisine && cruisine.map((item , index) => {
                       return (
-                        <div className="flex z-10 items-center w-[50%] gap-4 h-10" key={index} >
-                           <div className={`w-[17px] h-[17px] border border-solid rounded-sm flex  border-[#22449A] ${promptCuisine.includes(item.name) ? 'bg-[#22449A]' : 'bg-white' } `} onClick={() => handleCuisine(item.name)} />
+                        <div className="flex z-10 items-center w-[50%] gap-4 h-10 cursor-pointer" key={index} onClick={() => handleCuisine(item.name)}>
+                           <div className={`w-[17px] h-[17px] border border-solid rounded-sm flex  border-[#22449A] ${promptCuisine.includes(item.name) ? 'bg-[#22449A]' : 'bg-white' } `} />
                           <div className="food-pref">{item.name}</div>
                         </div>
                       )
