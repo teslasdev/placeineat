@@ -220,7 +220,7 @@
     font-size: 11px;
   }
   .phone-web {
-    gap: 40px;
+    gap: 10px;
     flex-wrap: wrap;
   }
 }
