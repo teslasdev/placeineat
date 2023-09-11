@@ -17,7 +17,7 @@ const Home = () => {
   const [promptCuisine, setPromptCuisine] = useState([])
   const [systemPrompt,setSystemPrompt] = useState("")
   const [responseData , setResponseData] = useState(true)
-  const [data , setData] = useState([])
+  const [resData , setData] = useState([])
   useEffect(() => {
     axios.get(import.meta.env.VITE_APP_BACKEND_URL+"preference/0").then((res) => {
       setPreference(res.data.data)
@@ -51,6 +51,10 @@ const Home = () => {
     }
     console.log(promptCuisine)
   }
+
+  useEffect(() => {
+    console.log(resData)
+  })
 async function gotoResponsePage() {
     setLoading(<FallingLines
       color="#ffffff"
@@ -107,7 +111,8 @@ async function gotoResponsePage() {
 
     const decodedChunk = decoder.decode(value, { stream: true });
     setResponseData(false)
-    setData((answer) => [...answer + decodedChunk]); // update state with new chunk
+    setData(prev => [...prev , JSON.parse(decodedChunk) ]); // update state with new chunk
+    
   }
   }
   const [checked,setCheck] = useState(false)
@@ -196,8 +201,9 @@ async function gotoResponsePage() {
       
       </div>
       :
-      <ResponsePage input={search} preference={promptPreference}  cuisine={promptCuisine} data={data} />
+      <ResponsePage input={search} preference={promptPreference}  cuisine={promptCuisine} data={resData} />
         // <p className="bg-white">{data}</p>
+        // <>akaka</>
       }
     </div>
   );
