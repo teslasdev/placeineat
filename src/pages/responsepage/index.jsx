@@ -33,7 +33,7 @@ const ResponsePage = ({ input, preference , cuisine , data }) => {
           return (
             <div className="res-col-container">
               <div className="res-title">
-                <div className="bg-[#284c63] h-full flex pl-5 p-2 items-center rounded-r-full min-w-[50%]">
+                <div className="bg-[#284c63] h-full flex pl-5 p-2 items-center rounded-r-full min-w-[30%]">
                   <a href={item.website}>{index + 1}. {item.name}</a>
                 </div>
               </div>
@@ -84,7 +84,7 @@ const ResponsePage = ({ input, preference , cuisine , data }) => {
                   
                 </div>
                 <div className="res-body-content">
-                  <div className="res-body-text sm:text-[18px] text-[14px]">
+                  <div className="res-body-text sm:text-[18px] text-[15px]">
                    
                     {item.description}
                     {/* <b> ({item.Description.split(' ').length} words)</b> */}

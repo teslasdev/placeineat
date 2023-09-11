@@ -111,7 +111,7 @@ async function gotoResponsePage() {
 
     const decodedChunk = decoder.decode(value, { stream: true });
     setResponseData(false)
-    setData(prev => [...prev , JSON.parse(decodedChunk) ]); // update state with new chunk
+    setData(prev => [...prev , JSON.parse(decodedChunk.replaceAll('*' , '')) ]); // update state with new chunk
     
   }
   }
